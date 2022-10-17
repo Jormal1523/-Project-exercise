@@ -1,28 +1,31 @@
 <template>
-  <div>
+  <div class="mainContainer">
     <navbarComponent/>
     <div class="headlines">本周熱門頭條</div>
     <div class="brownLine"></div>
     <div class="headlinesBar">
-      <img class="img1" src="../assets/img1.png" alt="">
+      <img class="img2" src="../assets/img2.png" alt="">
       <div class="content">
         <div class="title">{{ headline.title }}</div>
         <div class="nav" v-html="headline.nav"></div>
         <div class="date">{{ headline.date }}</div>
       </div>
     </div>
+    <footerComponent/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import navbarComponent from '@/components/BaseComponent/navbarComponent.vue'
+import footerComponent from '@/components/BaseComponent/footerComponent.vue'
 import axios from "axios";
 
 export default {
   name: 'MagazineView',
   components: {
-    navbarComponent
+    navbarComponent,
+    footerComponent
   },
   data(){
     return{
@@ -49,6 +52,12 @@ export default {
 </script>
 
 <style scoped>
+  .mainContainer{
+    max-width:100%;
+    display:flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
   .headlines{
     max-width:1200px;
     height:45px;
@@ -76,7 +85,7 @@ export default {
     margin-left:124px;
     margin-top:52px;
   }
-  .img1{
+  .img2{
     width:500px;
     height:100%;
     display: flex;

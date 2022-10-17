@@ -1,34 +1,37 @@
 <template>
   <div class="mainContainer">
     <navbarComponent/>
-      <div class="container">
-        <div class="title">探索週報</div>
-        <div class="content">快速了解當日討論度最高新聞、當月當周的重要國際大事，依據使用者喜好，每天產出分析主題，自動產出摘要</div>
-        <div class="linkBar">
-          <div class="linkTitle">
-            熱門新知<router-link class="moreLink" to="/">看更多>></router-link>
-          </div>
-          <div class="linkPageContainer">
-            <div class="linkPage" v-for="(items, index) in cls" :key="index">
-              <img class="img1" src="../assets/img1.png" alt="">
-              <div class="textTitle" >{{items.標題}}
-                <div class="date">{{items.發布日期}}</div>
-              </div>
+    <div class="container">
+      <div class="title">探索週報</div>
+      <div class="content">快速了解當日討論度最高新聞、當月當周的重要國際大事，依據使用者喜好，每天產出分析主題，自動產出摘要</div>
+      <div class="linkBar">
+        <div class="linkTitle">
+          熱門新知<router-link class="moreLink" to="/">看更多>></router-link>
+        </div>
+        <div class="linkPageContainer">
+          <div class="linkPage" v-for="(items, index) in cls" :key="index">
+            <img class="img1" src="../assets/img1.png" alt="">
+            <div class="textTitle" >{{items.標題}}
+              <div class="date">{{items.發布日期}}</div>
             </div>
           </div>
-        </div>     
-      </div>  
-    </div>
+        </div>
+      </div>     
+    </div>  
+    <footerComponent/>
+  </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import navbarComponent from '@/components/BaseComponent/navbarComponent.vue'
+import footerComponent from '@/components/BaseComponent/footerComponent.vue'
 import axios from "axios";
 export default {
   name: 'AnalysisView',
   components: {
-    navbarComponent
+    navbarComponent,
+    footerComponent
   },
   data(){
     return{
@@ -65,6 +68,9 @@ export default {
 <style scoped>
   .mainContainer{
     max-width:100%;
+    display:flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
   .container{
     background-image: url("../assets/cover.jpg");
