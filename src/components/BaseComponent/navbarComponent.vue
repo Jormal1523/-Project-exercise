@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar">
+  <div class="topbar">
     <img class="logo" src="../../assets/logo.png" alt="">
     <router-link class="btn1" to="/">analysis</router-link>
     <router-link class="btn2" to="/magazine">magazine</router-link>
@@ -8,32 +8,29 @@
 </template>
 
 <style scoped>
-  .navbar{
-    width: 1440px; 
+  .topbar{
+    width: 100%; 
     height: 80px;
     background-color: #E3D3C3;
+    display: flex;
   }
   .logo{
-    position: absolute;
     width:316px;
     height: 46px;
-    left:120px;
-    top:19px;
+    margin-left:120px;
+    margin-top:19px;
   }
   .btn1{
-    position: absolute;
-    left:537px;
-    top:21px
+    margin-left:101px;
+    margin-top:21px
   }
   .btn2{
-    position: absolute;
-    left:747px;
-    top:21px
+    margin-left:110px;
+    margin-top:21px
   }
   .btn3{
-    position: absolute;
-    left:957px;
-    top:21px
+    margin-left:110px;
+    margin-top:21px
   }
   .btn1,.btn2,.btn3{
     display: flex;
@@ -52,5 +49,16 @@
   .router-link-active{
     color:#606266;
     border-bottom:1px solid #0D8ABC 
+  }
+  @media screen and ( max-width: 768px ){
+    .logo{
+      margin-left: 26px;
+    }
+    .btn1{
+      margin-left: -20px;
+    }
+    .btn2,.btn3{
+      margin-left:12px;
+    }
   }
 </style>
