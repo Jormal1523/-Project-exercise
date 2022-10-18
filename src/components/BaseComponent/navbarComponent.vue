@@ -1,9 +1,12 @@
 <template>
   <div class="topbar">
     <img class="logo" src="../../assets/logo.png" alt="">
-    <router-link class="btn1" to="/">analysis</router-link>
-    <router-link class="btn2" to="/magazine">magazine</router-link>
-    <router-link class="btn3" to="/search">search</router-link>
+    <div class="btnGroup">
+      <router-link class="btn1" to="/">analysis</router-link>
+      <router-link class="btn2" to="/magazine">magazine</router-link>
+      <router-link class="btn3" to="/search">search</router-link>
+      <router-link class="btn4" to="/login">SIGN IN</router-link>
+    </div>
   </div>
 </template>
 
@@ -20,17 +23,13 @@
     margin-left:120px;
     margin-top:19px;
   }
-  .btn1{
+  .btnGroup{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    width:100%;
     margin-left:101px;
-    margin-top:21px
-  }
-  .btn2{
-    margin-left:110px;
-    margin-top:21px
-  }
-  .btn3{
-    margin-left:110px;
-    margin-top:21px
+    margin-right: 120px;
   }
   .btn1,.btn2,.btn3{
     display: flex;
@@ -42,6 +41,13 @@
     color: #C0C4CC;
     font-size: 22px;
   }
+  .btn4{
+    padding:12px 20px;
+    background-color:#FCB040;
+    text-decoration: none;
+    color:aliceblue;
+    border-radius: 10px;
+  }
   .btn1:hover,.btn2:hover,.btn3:hover{
     color:#606266;
     border-bottom:1px solid #0D8ABC
@@ -50,15 +56,28 @@
     color:#606266;
     border-bottom:1px solid #0D8ABC 
   }
-  @media screen and ( max-width: 768px ){
+  @media screen and ( max-width: 930px ){
     .logo{
       margin-left: 26px;
     }
+    .btnGroup{
+      margin-left:0px;
+      margin-right:0px;
+      justify-content: space-around;
+    }
     .btn1{
-      margin-left: -20px;
+      margin-left: 0px;
     }
     .btn2,.btn3{
-      margin-left:12px;
+      margin-left:0px;
+    }
+  }
+  @media screen and ( max-width: 750px ){
+    .topbar{
+      height: 60px;
+    }
+    .logo{
+      display:none;
     }
   }
 </style>

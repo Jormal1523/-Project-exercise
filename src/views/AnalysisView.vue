@@ -2,8 +2,10 @@
   <div class="mainContainer">
     <navbarComponent/>
     <div class="container">
-      <div class="title">探索週報</div>
-      <div class="content">快速了解當日討論度最高新聞、當月當周的重要國際大事，依據使用者喜好，每天產出分析主題，自動產出摘要</div>
+      <div class="leftBar">
+        <div class="title">探索週報</div>
+        <div class="content">快速了解當日討論度最高新聞、當月當周的重要國際大事，依據使用者喜好，每天產出分析主題，自動產出摘要</div>
+      </div>
       <div class="linkBar">
         <div class="linkTitle">
           熱門新知<router-link class="moreLink" to="/">看更多>></router-link>
@@ -79,6 +81,8 @@ export default {
     background-size: cover;
     width: 100%;
     height: 709px;
+    display:flex;
+    justify-content: space-around;
   }
   .title{
     max-width: 208px;
@@ -106,11 +110,11 @@ export default {
     text-align: left;
   }
   .linkBar{
-    position: absolute;
     width: 396px;
     height: 599px;
-    left:924px;
-    top: 134px;
+    margin-top: 54px;
+    margin-left:101px;
+    margin-right:10px;
     background: rgba(0, 0, 0, 0.6);
   }
   .linkTitle{
@@ -165,11 +169,9 @@ export default {
     width: 95px;
     height: 96px;
   }
-  @media screen and ( max-width: 1440px ){
-
-  }
-  @media screen and ( max-width: 768px ){
+  @media screen and ( max-width: 930px ){
     .container{
+      flex-direction: column;
       background-image: url("../assets/cover768.png");
       height: 727px;
     }
@@ -193,11 +195,10 @@ export default {
       text-align: center;
     }
     .linkBar{
-      position: relative;
-      left:0;
-      top:0;
       width:100%;
       height:335px;
+      margin-left:0px;
+      margin-right:0px;
       margin-top:137px;
     }
     .linkTitle{
@@ -205,8 +206,8 @@ export default {
       justify-content:space-between;
       align-items: center;
       min-width:630px;
-      padding-left:8px;
-      padding-right:8px;
+      padding-left:0px;
+      margin-top:0px;
       margin-left:96px;
       margin-right:auto;
       margin-bottom:25px;
@@ -233,6 +234,65 @@ export default {
       margin-right:50px;
       margin-left:0px;
       margin-top:20px;
+    }
+  }
+  @media screen and ( max-width: 750px ){
+    .mainContainer{
+      min-height: 120vh;
+    }
+    .container{
+      height:279px;
+      background-position:center;
+    }
+    .title{
+      position: absolute;
+      width: 171px;
+      height: 62.81px;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 129.89px;
+      padding:0px;
+    }
+    .content{
+      width:431px;
+      margin-top:50px;
+    }
+    .linkBar{
+      position: absolute;
+      top: 339px;
+      margin-top:0px;
+      background: #fff; 
+    }
+    .linkTitle{
+      min-width:0px;
+      color:#303133;
+      margin-left:36px;
+      padding-left:0px;
+    }
+    .textTitle{
+      color:#606266;
+    }
+    .date{
+      color:#606266;
+    }
+    .img1{
+      width:224.36px;
+      height:149.57px;
+    }
+    .linkPageContainer{
+      min-width:0px;
+      width:100%;
+      margin-left:0px;
+    }
+    .linkPage{
+      height:250px;
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      width:50%;
+      margin-top:50px;
+      margin-right:0px;
     }
   }
 </style>

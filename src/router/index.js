@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import AnalysisView from '../views/AnalysisView.vue'
 import MagazineView from '../views/MagazineView.vue'
+import MagazinePageView from '../views/MagazinePageView.vue'
 import SearchView from '../views/SearchView.vue'
 
 const routes = [
@@ -13,6 +14,11 @@ const routes = [
     path: '/magazine',
     name: 'MagazineView',
     component: MagazineView
+  },
+  {
+    path: "/magazine/:id",
+    name: "magazinePageView",
+    component: MagazinePageView,
   },
   {
     path: '/search',

@@ -45,4 +45,21 @@
     line-height: 16px;
     color: #303133;
   }
+  @media screen and ( max-width: 930px ){
+    .leftBtn{
+      margin-left:27px;
+      width:143px;
+      height:32px;
+    }
+    img{
+      height: 100%;
+    }
+    .rightBtn{
+      margin-right:27px;
+    }
+    .textLink{
+      font-size: 18px;
+      line-height: 18px;
+    }
+  }
 </style>
