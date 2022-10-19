@@ -4,9 +4,26 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </nav> -->
-    <router-view/>
+    <router-view :key="key"></router-view>
+    <!-- <router-view/> -->
   </div>
 </template>
+
+<script>
+  export default {
+    data(){
+      return{
+
+      }
+    },
+    computed:{
+      key(){
+        return this.$route.path + Math.random();
+      }
+    }
+  }
+</script>
+
 <style>
 body{
   margin:0;

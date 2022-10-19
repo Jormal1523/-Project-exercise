@@ -5,11 +5,25 @@
       <div class="topPart">
         <div class="title">{{ cls.標題 }}</div>
         <div class="date">{{ cls.發布日期 }}</div>
-        <img class="img4" src="../assets/img4.png" alt="">
+        <img class="img4" src="https://picsum.photos/id/1074/1000/600" alt="">
       </div>
       <div class="sencondPart">
         <div class="nav" v-html="cls.內容"></div>
       </div>
+    </div>
+    <div class="listBar">
+      <div class="headlines">文章列表</div>
+      <div class="listComponent">
+        <div class="lists" v-for="(items,index) in article" :key="index">
+          <router-link class="listBtn" :to="`/magazine/${index}`">
+            <img class="img3" src="https://picsum.photos/id/1079/500/300" alt="">
+            <div>
+              <div class="listTitle">{{ items.標題 }}</div>
+              <div class="listDate">{{ items.發布日期 }}</div>
+            </div>
+          </router-link>
+        </div>                                  
+      </div> 
     </div>
     <footerComponent/>
   </div>
@@ -28,6 +42,7 @@ export default {
   data() {
     return {
       cls: {},
+      article:[]
     };
   },
   async mounted() {
@@ -38,6 +53,9 @@ export default {
       if (i == this.$route.params.id) {
         this.cls = data[i];
       }
+    }
+    for (let i = 0;i < 10; i++ ){
+      this.article.push(data[i])
     }
   },
 }
@@ -92,5 +110,97 @@ export default {
   .nav{
     padding-left:100px;
     padding-right:100px;
+  }
+  .headlines{
+    max-width:100%;
+    height:45px;
+    margin-top:61px;
+    margin-left:120px;
+    margin-right:120px;
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 28px;
+    text-align: left;
+    color:black;
+    border-bottom:2px solid #C0C4CC;
+  }
+  .listComponent{
+    max-width:100%;
+    margin-top:33px;
+    margin-left:120px;
+    margin-right:120px;
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+  .listComponent::-webkit-scrollbar{
+    background-color:#C0C4CC;
+    height:8px;
+  }
+  .listComponent::-webkit-scrollbar-thumb {
+    background-color:#606266;
+    border-radius: 10px;
+  }
+  .lists{
+    margin-right:50px;
+    text-align: left;
+  }
+  .img3{
+    width: 220px;
+    height: 200.52px;
+  }
+  .listTitle{
+    width:220px;
+    margin-top:20px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 20px;
+    color:#606266;
+  }
+  .listDate{
+    margin-top:7px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    color:#C0C4CC;
+  }
+  .listBtn{
+    text-decoration: none; 
+    color: inherit; 
+  }
+  @media screen and ( max-width: 930px ){
+    .headlines{
+      margin-left:21px;
+      margin-right:21px;
+    }
+    .title{
+      font-size:36px;
+      line-height: 35px;
+    }
+    .date{
+      font-size: 14px;
+    }
+  }
+  @media screen and ( max-width: 750px ){
+    .listComponent{
+      margin-top:25px;
+      max-width:100%;
+      margin-left:auto;
+      margin-right:auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .lists{
+      margin-right:0px;
+      margin-top:28px;
+    }
+    .img3{
+      width: 246.8px;
+      height: 126.97px;
+    }
+    .listBtn{
+      display: flex; 
+      justify-content: space-around
+    }
   }
 </style>

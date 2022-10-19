@@ -25,11 +25,11 @@
   }
   .btnGroup{
     display: flex;
-    justify-content:space-between;
+    justify-content:space-around;
     align-items: center;
     width:100%;
     margin-left:101px;
-    margin-right: 120px;
+    margin-right: auto;
   }
   .btn1,.btn2,.btn3{
     display: flex;

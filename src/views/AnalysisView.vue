@@ -12,7 +12,7 @@
         </div>
         <div class="linkPageContainer">
           <router-link class="linkPage" v-for="(items, index) in cls" :key="index" :to="`/magazine/${index}`">
-            <img class="img1" src="../assets/img1.png" alt="">
+            <img class="img1" src="https://picsum.photos/id/1062/500/300" alt="">
             <div class="textTitle" >{{items.標題}}
               <div class="date">{{items.發布日期}}</div>
             </div>

@@ -5,7 +5,7 @@
     <div class="brownLine"></div>
     <router-link style="text-decoration: none; color: inherit;" :to="`/magazine/0`">
       <div class="headlinesBar">
-        <img class="img2" src="../assets/img2.png" alt="">
+        <img class="img2" src="https://picsum.photos/id/1015/1000/600" alt="">
         <div class="content">
           <div class="title">{{ headline.title }}</div>
           <div class="nav" v-html="headline.nav"></div>
@@ -19,7 +19,7 @@
       <div class="listComponent">
         <div class="lists" v-for="(items,index) in cls" :key="index">
           <router-link class="listBtn" :to="`/magazine/${index+1}`">
-            <img class="img3" src="../assets/img3.png" alt="">
+            <img class="img3" src="https://picsum.photos/id/177/300/500?grayscale" alt="">
             <div>
               <div class="listTitle">{{ items.標題 }}</div>
               <div class="listDate">{{ items.發布日期 }}</div>
@@ -156,11 +156,20 @@ export default {
   }
   .listComponent{
     max-width:100%;
+    margin-top:33px;
     margin-left:120px;
     margin-right:120px;
     display: flex;
     overflow-x: scroll;
     overflow-y: hidden;
+  }
+  .listComponent::-webkit-scrollbar{
+    background-color:#C0C4CC;
+    height:8px;
+  }
+  .listComponent::-webkit-scrollbar-thumb {
+    background-color:#606266;
+    border-radius: 10px;
   }
   .lists{
     margin-right:50px;
