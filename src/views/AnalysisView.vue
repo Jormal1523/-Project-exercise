@@ -8,15 +8,15 @@
       </div>
       <div class="linkBar">
         <div class="linkTitle">
-          熱門新知<router-link class="moreLink" to="/">看更多>></router-link>
+          熱門新知<router-link class="moreLink" to="/magazine">看更多>></router-link>
         </div>
         <div class="linkPageContainer">
-          <div class="linkPage" v-for="(items, index) in cls" :key="index">
+          <router-link class="linkPage" v-for="(items, index) in cls" :key="index" :to="`/magazine/${index}`">
             <img class="img1" src="../assets/img1.png" alt="">
             <div class="textTitle" >{{items.標題}}
               <div class="date">{{items.發布日期}}</div>
             </div>
-          </div>
+          </router-link>
         </div>
       </div>     
     </div>  
@@ -147,6 +147,7 @@ export default {
     height:90px;
     margin-left:34px;
     margin-top:41px;
+    text-decoration: none;
   }
   .textTitle{
     display:flex;
@@ -293,6 +294,9 @@ export default {
       width:50%;
       margin-top:50px;
       margin-right:0px;
+    }
+    .routerLink{
+      display: none;
     }
   }
 </style>

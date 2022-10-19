@@ -3,7 +3,7 @@
     <navbarComponent/>
     <div class="headlines">本周熱門頭條</div>
     <div class="brownLine"></div>
-    <router-link style="text-decoration: none; color: inherit" :to="`/magazine/0`">
+    <router-link style="text-decoration: none; color: inherit;" :to="`/magazine/0`">
       <div class="headlinesBar">
         <img class="img2" src="../assets/img2.png" alt="">
         <div class="content">
@@ -18,10 +18,12 @@
       <div class="brownLine2"></div>
       <div class="listComponent">
         <div class="lists" v-for="(items,index) in cls" :key="index">
-          <router-link style="text-decoration: none; color: inherit" :to="`/magazine/${index+1}`">
-            <img src="../assets/img3.png" alt="">
-            <div class="listTitle">{{ items.標題 }}</div>
-            <div class="listDate">{{ items.發布日期 }}</div>
+          <router-link class="listBtn" :to="`/magazine/${index+1}`">
+            <img class="img3" src="../assets/img3.png" alt="">
+            <div>
+              <div class="listTitle">{{ items.標題 }}</div>
+              <div class="listDate">{{ items.發布日期 }}</div>
+            </div>
           </router-link>
         </div>                                  
       </div> 
@@ -104,21 +106,26 @@ export default {
   }
   .headlinesBar{
     display:flex;
+    justify-content: space-between;
     max-width:100%;
     height:300px;
     margin-left:124px;
+    margin-right:124px;
     margin-top:52px;
   }
   .img2{
-    width:500px;
+    max-width:500px;
+    min-width:300px;
     height:100%;
     display: flex;
   }
   .content{
     margin-left:45px;
     max-width:564px;
+    min-width:200px;
   }
   .title{
+    width:100%;
     margin-top:0px;
     font-weight: 700;
     font-size: 36px;
@@ -126,6 +133,7 @@ export default {
     text-align: left;
   }
   .nav{
+    width:100%;
     margin-top:33px;
     font-weight: 400;
     font-size: 18px;
@@ -158,6 +166,10 @@ export default {
     margin-right:50px;
     text-align: left;
   }
+  .img3{
+    width: 220px;
+    height: 200.52px;
+  }
   .listTitle{
     width:220px;
     margin-top:20px;
@@ -173,4 +185,107 @@ export default {
     line-height: 12px;
     color:#C0C4CC;
   }
+  .listBtn{
+    text-decoration: none; 
+    color: inherit; 
+  }
+  @media screen and ( max-width: 930px ){
+    .headlines{
+      margin-left:23px;
+      margin-right:23px;
+      margin-top:55px;
+    }
+    .brownLine{
+      left:23px;
+      top:180px;
+    }
+    .brownLine2{
+      left:23px;
+      top:616px;
+    }
+    .headlinesBar{
+      max-width:727px;
+      height:287.51px;
+      margin-left:23px;
+      margin-right:23px;
+      margin-top:46px;
+    }
+    .img2{
+      min-width:420px;
+      height:100%;
+      display: flex;
+    }
+    .listComponent{
+      margin-left:23px;
+      margin-right:23px;
+    }
+    .title{
+      font-size: 22px;
+      line-height: 25px;
+    }
+    .nav{
+      margin-top:33px;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+  @media screen and ( max-width: 750px ){
+    .headlines{
+      border:transparent;
+    }
+    .brownLine{
+      left:20px;
+      top:160px;
+    }
+    .brownLine2{
+      left:20px;
+      top:846px;
+    }
+    .headlinesBar{
+      flex-direction: column;
+      margin-left:0px;
+      margin-right:0px;
+      height:538px;
+    }
+    .img2{
+      width:498px;
+      height:277;
+      display: flex;
+      margin-left:auto;
+      margin-right:auto;
+    }
+    .content{
+      width:498px;
+      margin-top:54px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+    .nav{
+      margin-top:21px;
+    }
+    .date{
+      margin-top:18px;
+    }
+    .listComponent{
+      margin-top:25px;
+      max-width:100%;
+      margin-left:auto;
+      margin-right:auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .lists{
+      margin-right:0px;
+      margin-top:28px;
+    }
+    .img3{
+      width: 246.8px;
+      height: 126.97px;
+    }
+    .listBtn{
+      display: flex; 
+      justify-content: space-around
+    }
+  } 
 </style>
