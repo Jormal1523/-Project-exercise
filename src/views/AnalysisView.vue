@@ -37,24 +37,7 @@ export default {
   },
   data(){
     return{
-      cls:[
-        // {
-        //   title:"數據與設計應用",
-        //   date:"10/14"
-        // },
-        // {
-        //   title:"麥當勞咖啡選用雨林聯盟認證豆策略",
-        //   date:"10/13"
-        // },        
-        // {
-        //   title:"人工智慧的神經網絡機制",
-        //   date:"10/12"
-        // },
-        // {
-        //   title:"辦公室色彩學與心理情緒研究討論",
-        //   date:"10/11"
-        // },
-      ]
+      cls:[]
     }
   },
   async mounted(){
@@ -76,8 +59,6 @@ export default {
   }
   .container{
     background-image: url("../assets/cover.jpg");
-    /* background-attachment: fixed; */
-    /* background-position: center; */
     background-size: cover;
     width: 100%;
     height: 709px;
@@ -294,9 +275,6 @@ export default {
       width:50%;
       margin-top:50px;
       margin-right:0px;
-    }
-    .routerLink{
-      display: none;
     }
   }
 </style>

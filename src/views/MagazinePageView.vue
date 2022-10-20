@@ -111,6 +111,12 @@ export default {
     padding-left:100px;
     padding-right:100px;
   }
+
+  /* 設置v-html渲染的的圖片樣式，使用:deep()，代表修改子组件内的样式*/
+  :deep() .contentImg img{
+    width:100%;
+  }
+
   .headlines{
     max-width:100%;
     height:45px;
