@@ -3,6 +3,7 @@ import AnalysisView from '../views/AnalysisView.vue'
 import MagazineView from '../views/MagazineView.vue'
 import MagazinePageView from '../views/MagazinePageView.vue'
 import SearchView from '../views/SearchView.vue'
+import chartTest from '../views/chartTest.vue'
 
 const routes = [
   {
@@ -24,7 +25,12 @@ const routes = [
     path: '/search',
     name: 'SearchView',
     component: SearchView
-  }
+  },
+  {
+    path: '/chartTest',
+    name: 'chartTest',
+    component: chartTest
+  },
 ]
 
 const router = createRouter({

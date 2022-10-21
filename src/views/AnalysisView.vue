@@ -51,11 +51,13 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;400&display=swap');
   .mainContainer{
     max-width:100%;
     display:flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: 'Lato', sans-serif;
   }
   .container{
     background-image: url("../assets/cover.jpg");
@@ -102,7 +104,7 @@ export default {
     display:flex;
     justify-content:space-between;
     align-items: flex-end;
-    width:343px;
+    max-width:343px;
     padding-left:8px;
     padding-right:8px;
     margin-left:auto;
@@ -134,7 +136,7 @@ export default {
     display:flex;
     flex-direction: column;
     justify-content:space-between;
-    width:214px;
+    max-width:214px;
     height:90px;
     font-weight: 700;
     font-size: 18px;
@@ -236,7 +238,7 @@ export default {
       padding:0px;
     }
     .content{
-      width:431px;
+      max-width:431px;
       margin-top:50px;
     }
     .linkBar{
@@ -249,6 +251,7 @@ export default {
       min-width:0px;
       color:#303133;
       margin-left:36px;
+      margin-bottom:0px;
       padding-left:0px;
     }
     .textTitle{
@@ -258,8 +261,8 @@ export default {
       color:#606266;
     }
     .img1{
-      width:224.36px;
-      height:149.57px;
+      width:100%;
+      /* height:149.57px; */
     }
     .linkPageContainer{
       min-width:0px;
@@ -272,7 +275,7 @@ export default {
       flex-direction: column;
       justify-content: space-around;
       align-items: center;
-      width:50%;
+      max-width:50%;
       margin-top:50px;
       margin-right:0px;
     }

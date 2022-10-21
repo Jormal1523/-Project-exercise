@@ -69,11 +69,13 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;400&display=swap');
   .mainContainer{
     max-width:100%;
     display:flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: 'Lato', sans-serif;
   }
   .headlines{
     max-width:100%;
@@ -112,10 +114,11 @@ export default {
     margin-left:124px;
     margin-right:124px;
     margin-top:52px;
+    overflow: hidden;
   }
   .img2{
     max-width:500px;
-    min-width:300px;
+    /* min-width:300px; */
     height:100%;
     display: flex;
   }
@@ -258,14 +261,14 @@ export default {
       height:538px;
     }
     .img2{
-      width:498px;
+      max-width:498px;
       height:277;
       display: flex;
       margin-left:auto;
       margin-right:auto;
     }
     .content{
-      width:498px;
+      max-width:498px;
       margin-top:54px;
       margin-left:auto;
       margin-right:auto;

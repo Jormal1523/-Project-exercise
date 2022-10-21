@@ -2,7 +2,7 @@
   <div class="mainContainer">
     <navbarComponent/>
     <div class="topPart">
-      <div class="title">快速分析總攬</div>
+      <div class="title">快速分析總覽</div>
       <div class="brownLine"></div>
       <div class="searchBar">
         <div class="area">
@@ -46,11 +46,13 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;400&display=swap');
   .mainContainer{
     max-width:100%;
     display:flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: 'Lato', sans-serif;
   }
   .topPart{
     max-width:100%;

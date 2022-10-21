@@ -15,6 +15,7 @@
 </template>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;400&display=swap');
   .footer{
     display: flex;
     margin-top: auto;
@@ -23,6 +24,7 @@
     justify-content: space-between;
     align-items: center;
     border-top:1px solid #C0C4CC;
+    font-family: 'Lato', sans-serif;
   }
   .leftBtn{
     display:flex;

@@ -17,7 +17,7 @@
         <div class="lists" v-for="(items,index) in article" :key="index">
           <router-link class="listBtn" :to="`/magazine/${index}`">
             <img class="img3" src="https://picsum.photos/id/1079/500/300" alt="">
-            <div>
+            <div class="listContent">
               <div class="listTitle">{{ items.標題 }}</div>
               <div class="listDate">{{ items.發布日期 }}</div>
             </div>
@@ -62,15 +62,17 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;400&display=swap');
   .mainContainer{
     max-width:100%;
     display:flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: 'Lato', sans-serif;
   }
   .topPart{
     max-width:1000px;
-    min-width:500px;
+    min-width:300px;
     margin-left:auto;
     margin-right:auto;
     margin-top:57px;
@@ -97,7 +99,7 @@ export default {
   }
   .sencondPart{
     max-width:1000px;
-    min-width:500px;
+    /* min-width:500px; */
     margin-left:auto;
     margin-right:auto;
     margin-top:57px;
@@ -153,7 +155,7 @@ export default {
   }
   .img3{
     width: 220px;
-    height: 200.52px;
+    /* height: 200.52px; */
   }
   .listTitle{
     width:220px;
@@ -186,8 +188,19 @@ export default {
     .date{
       font-size: 14px;
     }
+    .sencondPart{
+      max-width:571px;
+    }
+    .nav{
+      padding-left:0px;
+      padding-right:0px;
+    }
   }
   @media screen and ( max-width: 750px ){
+    .sencondPart{
+      margin-left:26px;
+      margin-right:26px;
+    }
     .listComponent{
       margin-top:25px;
       max-width:100%;
@@ -196,17 +209,26 @@ export default {
       display: flex;
       flex-direction: column;
     }
+    .listContent{
+      width:238px;
+    }
+    .listTitle{
+      width:100%;
+    }
+    .listDate{
+      width:100%;
+    }
     .lists{
       margin-right:0px;
       margin-top:28px;
     }
     .img3{
-      width: 246.8px;
+      /* width: 246.8px; */
       height: 126.97px;
     }
     .listBtn{
       display: flex; 
-      justify-content: space-around
+      justify-content: space-around;
     }
   }
 </style>

@@ -11,11 +11,13 @@
 </template>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;400&display=swap');
   .topbar{
     width: 100%; 
     height: 80px;
     background-color: #E3D3C3;
     display: flex;
+    font-family: 'Lato', sans-serif;
   }
   .logo{
     width:316px;
