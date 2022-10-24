@@ -1,114 +1,68 @@
 <template>
-<div>
-{{doughnutChart.data.datasets[0].data}}
-  <div style="height:600px;width: 600px;">
-    <vue3-chart-js
-        :id="doughnutChart.id"
-        :type="doughnutChart.type"
-        :data="doughnutChart.data"
-    ></vue3-chart-js>
+  <div>
+    <canvas id="planet-chart"></canvas>
   </div>
-</div>
 </template>
 
 <script>
-import reacitve from 'vue'
-import Vue3ChartJs from '@j-t-mcc/vue3-chartjs'
-// import { onMounted , ref } from "vue";
-import axios from 'axios'
+import Chart from "chart.js";
 
 export default {
-  name: 'App',
-  components: {
-    Vue3ChartJs,
-  },
-  // setup () {
-  //   let dateArr=ref([]);
-  //   onMounted(async () => {
-  //     let { data } = await axios.get("/mock/test.json");
-  //     dateArr.value = data;
-  //     for (let i = 0; i < dateArr.value.length; i++) {
-  //       console.log(dateArr.value[i].年度);
-  //     }   
-  //   });
-  //   console.log(dateArr.value)
-  //   const doughnutChart = {
-  //     id: 'doughnut',
-  //     type: 'bar',
-  //     data: {
-  //       labels: dateArr.value.年度,
-  //       datasets: [
-  //         {
-  //           backgroundColor: [
-  //             '#41B883',
-  //             '#E46651',
-  //             '#00D8FF',
-  //             '#DD1B16'
-  //           ],
-  //           data: [40, 20, 80, 10]
-  //         }
-  //       ]
-  //     }
-  //   }
-  //   return {
-  //     doughnutChart,
-  //   }
-  // },
-  data(){
-    const doughnutData = reacitve({
-        id: 'doughnut',
-        type: 'doughnut',
+  name: "PlanetChart",
+  data() {
+    return {
+      planetChartData: {
+        type: "line",
         data: {
-          labels: [],
+          labels: [
+            "水星",
+            "金星",
+            "地球",
+            "火星",
+            "木星",
+            "土星",
+            "天王星",
+            "海王星",
+          ],
           datasets: [
             {
-              backgroundColor: [
-                '#41B883',
-                '#E46651',
-                '#00D8FF',
-                '#DD1B16'
+              label: "行星卫星数量",
+              data: [0, 0, 1, 2, 79, 82, 27, 14],
+              backgroundColor: "rgba(54,73,93,.5)",
+              borderColor: "#36495d",
+              borderWidth: 3,
+            },
+            {
+              label: "太阳系行星质量 (相对于太阳 x 10^-6)",
+              data: [
+                16.6, 208.1, 300.3, 123, 954.792, 685.886, 243.662, 201.514,
               ],
-              data: []
-            }
-          ]
-        }
-      })
-
-    return {
-      doughnutData
-      
-      // doughnutChart: {
-      //   id: 'doughnut',
-      //   type: 'doughnut',
-      //   data: {
-      //     labels: [],
-      //     datasets: [
-      //       {
-      //         backgroundColor: [
-      //           '#41B883',
-      //           '#E46651',
-      //           '#00D8FF',
-      //           '#DD1B16'
-      //         ],
-      //         data: []
-      //       }
-      //     ]
-      //   }
-      // }
-    }
+              backgroundColor: "rgba(71, 183,132,.5)",
+              borderColor: "#47b784",
+              borderWidth: 3,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          lineTension: 1,
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true,
+                  padding: 25,
+                },
+              },
+            ],
+          },
+        },
+      },
+    };
   },
-  async mounted(){
-    let { data } = await axios.get("/mock/test.json");
-    // let array = []
-    for( let i = 0; i < data.length; i++ ){
-      this.doughnutChart.data.labels.push(data[i].年度)
-      this.doughnutChart.data.datasets[0].data.push(data[i].總人數)
-      // this.doughnutChart.data.datasets[0].data
-      // array.push(data[i].總人數)
-    }
-    // console.log(array)
-    // this.doughnutChart.data.datasets[0].data =array
-    // console.log(this.doughnutChart.data.datasets[0].data)
-  }
-}
+  mounted() {
+    const ctx = document.getElementById("planet-chart");
+    new Chart(ctx, this.planetChartData);
+  },
+};
 </script>

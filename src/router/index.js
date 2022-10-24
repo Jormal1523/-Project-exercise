@@ -4,6 +4,7 @@ import MagazineView from '../views/MagazineView.vue'
 import MagazinePageView from '../views/MagazinePageView.vue'
 import SearchView from '../views/SearchView.vue'
 import chartTest from '../views/chartTest.vue'
+import chartTest22 from '../views/chartTest22.vue'
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: '/chartTest',
     name: 'chartTest',
     component: chartTest
+  },
+  {
+    path: '/chartTest22',
+    name: 'chartTest22',
+    component: chartTest22
   },
 ]
 
