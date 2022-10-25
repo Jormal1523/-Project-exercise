@@ -62,11 +62,17 @@ export default {
     const data = reactive({
       newsdata: "",
       continent: ["歐洲", "美洲", "大洋洲", "亞洲", "非洲"],
+      years: [105, 106, 107, 108, 109],
       mount105: [],
       mount106: [],
       mount107: [],
       mount108: [],
       mount109: [],
+      mountEurope: [],
+      mountAmerica: [],
+      mountOceania: [],
+      mountAsia: [],
+      mountAfrica: [],
     });
     const form = ref("pie");
     function pie() {
@@ -109,6 +115,7 @@ export default {
       let sum109Asia = 0;
       let sum109Africa = 0;
       let array = [];
+      //重構res.data,去除千分位,並依照年份以及洲別篩選
       for (let i = 0; i < res.data.length; i++) {
         if (res.data[i].年度 == 105 && res.data[i].洲別 == "歐洲") {
           let mount2 = res.data[i].總人數.toString();
@@ -217,6 +224,8 @@ export default {
           sum109Africa += array2[i];
         }
       }
+
+      // 依照年分,各洲別的組合
       data.mount105.push(
         sum105Europe,
         sum105America,
@@ -248,6 +257,38 @@ export default {
         sum109Asia,
         sum109Africa
       );
+
+      //依照洲別,各年度的組合
+      data.mountEurope.push(
+        sum105Europe,
+        sum106Europe,
+        sum107Europe,
+        sum108Europe,
+        sum109Europe
+      );
+      data.mountAmerica.push(
+        sum105America,
+        sum106America,
+        sum107America,
+        sum108America,
+        sum109America
+      );
+      data.mountOceania.push(
+        sum105Oceania,
+        sum106Oceania,
+        sum107Oceania,
+        sum108Oceania,
+        sum109Oceania
+      );
+      data.mountAsia.push(
+        sum105Asia,
+        sum106Asia,
+        sum107Asia,
+        sum108Asia,
+        sum109Asia
+      );
+      data.mountAfrica.push(sum109Africa);
+
       // console.log(sum105Europe);
       // console.log(sum105America);
       // console.log(sum105Oceania);
