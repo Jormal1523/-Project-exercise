@@ -3,7 +3,7 @@ import AnalysisView from '../views/AnalysisView.vue'
 import MagazineView from '../views/MagazineView.vue'
 import MagazinePageView from '../views/MagazinePageView.vue'
 import SearchView from '../views/SearchView.vue'
-import chartTest22 from '../views/chartTest22.vue'
+import chartTest22 from '../components/chartTest22.vue'
 
 const routes = [
   {

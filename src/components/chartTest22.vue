@@ -1,43 +1,57 @@
 <template>
-  <h2>Pie Chart</h2>
-  <div style="max-width: 400px">
-    <vue3-chart-js
-      v-if="data.newsdata != ''"
-      :id="pieChart.id"
-      :type="pieChart.type"
-      :data="pieChart.data"
-    ></vue3-chart-js>
-  </div>
-  <div style="max-width: 400px">
-    <vue3-chart-js
-      v-if="data.newsdata != ''"
-      :id="barChart.id"
-      :type="barChart.type"
-      :data="barChart.data"
-    ></vue3-chart-js>
-  </div>
-  <div style="max-width: 400px">
-    <vue3-chart-js
-      v-if="data.newsdata != ''"
-      :id="lineChart.id"
-      :type="lineChart.type"
-      :data="lineChart.data"
-    ></vue3-chart-js>
-  </div>
-  <div style="max-width: 400px">
-    <vue3-chart-js
-      v-if="data.newsdata != ''"
-      :id="radarChart.id"
-      :type="radarChart.type"
-      :data="radarChart.data"
-    ></vue3-chart-js>
+  <div class="container">
+    <div class="mainChartContainer">
+      <div class="chartContainer" v-if="form == 'pie'">
+        <h2>圓餅圖</h2>
+        <!-- v-if="data.newsdata != ''" 判斷取得資料後再渲染 -->
+        <vue3-chart-js
+          v-if="data.newsdata !== ''"
+          :id="pieChart.id"
+          :type="pieChart.type"
+          :data="pieChart.data"
+        ></vue3-chart-js>
+      </div>
+      <div class="chartContainer" v-if="form == 'bar'">
+        <h2>長條圖</h2>
+        <vue3-chart-js
+          v-if="data.newsdata != ''"
+          :id="barChart.id"
+          :type="barChart.type"
+          :data="barChart.data"
+        ></vue3-chart-js>
+      </div>
+      <div class="chartContainer" v-if="form == 'line'">
+        <h2>折線圖</h2>
+        <vue3-chart-js
+          v-if="data.newsdata != ''"
+          :id="lineChart.id"
+          :type="lineChart.type"
+          :data="lineChart.data"
+        ></vue3-chart-js>
+      </div>
+      <div class="chartContainer" v-if="form == 'radar'">
+        <h2>雷達圖</h2>
+        <vue3-chart-js
+          v-if="data.newsdata != ''"
+          :id="radarChart.id"
+          :type="radarChart.type"
+          :data="radarChart.data"
+        ></vue3-chart-js>
+      </div>
+    </div>
+    <div class="sideBar">
+      <div class="btn" @click="pie">圓餅圖</div>
+      <div class="btn" @click="bar">長條圖</div>
+      <div class="btn" @click="line">折線圖</div>
+      <div class="btn" @click="radar">雷達圖</div>
+    </div>
   </div>
 </template>
 
 <script>
 import Vue3ChartJs from "@j-t-mcc/vue3-chartjs";
 import axios from "axios";
-import { reactive } from "@vue/runtime-core";
+import { reactive, ref } from "@vue/runtime-core";
 
 export default {
   name: "App",
@@ -45,18 +59,6 @@ export default {
     Vue3ChartJs,
   },
   setup() {
-    // const apple = ["1,232", 2, 3];
-    // const apple2 = [];
-    // let sum2 = 0;
-    // for (let i = 0; i < apple.length; i++) {
-    //   let apple3 = apple[i].toString();
-    //   apple2.push(apple3.replace(/[,]+/g, ""));
-    //   let apple4 = apple2.map(Number);
-    //   sum2 += apple4[i];
-    // }
-    // console.log(apple);
-    // console.log(apple2);
-    // console.log(sum2);
     const data = reactive({
       newsdata: "",
       continent: ["歐洲", "美洲", "大洋洲", "亞洲", "非洲"],
@@ -66,6 +68,23 @@ export default {
       mount108: [],
       mount109: [],
     });
+    const form = ref("pie");
+    function pie() {
+      form.value = "pie";
+      console.log(form);
+    }
+    function bar() {
+      form.value = "bar";
+      console.log(form);
+    }
+    function line() {
+      form.value = "line";
+      console.log(form);
+    }
+    function radar() {
+      form.value = "radar";
+      console.log(form);
+    }
     axios.get("/mock/test.json").then((res) => {
       data.newsdata = res.data;
       let sum105Europe = 0;
@@ -382,7 +401,46 @@ export default {
       barChart,
       lineChart,
       radarChart,
+      pie,
+      line,
+      bar,
+      radar,
+      form,
     };
   },
 };
 </script>
+
+<style scoped>
+.container {
+  display: flex;
+  justify-content: center;
+}
+.mainChartContainer {
+  max-width: 1334px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.sideBar {
+  width: 150px;
+  height: 368px;
+  margin-top: 67px;
+  margin-left: 46px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 4px 8px #b0bec5;
+  border-radius: 8px;
+}
+.btn {
+  margin-bottom: 22px;
+  cursor: pointer;
+}
+.chartContainer {
+  width: 800px;
+  margin-bottom: 64px;
+}
+</style>
