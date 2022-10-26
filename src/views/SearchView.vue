@@ -7,7 +7,7 @@
       <div class="searchBar">
         <div class="area">
           <div>區域</div>
-          <select name="areas">
+          <select name="areas" v-model="areas">
             <option value="">選擇洲別</option>
             <option value="歐洲">歐洲</option>
             <option value="美洲">美洲</option>
@@ -18,7 +18,7 @@
         </div>
         <div class="year">
           <div>年分</div>
-          <select name="years">
+          <select name="years" v-model="years">
             <option value="">選擇年分</option>
             <option value="105">105</option>
             <option value="106">106</option>
@@ -28,8 +28,8 @@
           </select>
         </div>
         <div class="btnGroup">
-          <button class="clean">清除</button>
-          <button class="send">送出</button>
+          <button class="clean" @click="clean">清除</button>
+          <button class="send" @click="submitChart">送出</button>
         </div>
       </div>
     </div>
@@ -52,6 +52,30 @@ export default {
     navbarComponent,
     footerComponent,
     chartTest22,
+  },
+  data() {
+    return {
+      areas: "",
+      years: "",
+    };
+  },
+  methods: {
+    submitChart() {
+      let chartData = {
+        areas: this.areas,
+        years: this.years,
+      };
+      // console.log(chartData);
+      this.$store.commit("changeStatus");
+      this.$store.commit("addChartInformation", chartData);
+      return this.$router.go(0);
+    },
+    clean() {
+      this.areas = "";
+      this.years = "";
+      this.$store.commit("clearInformation");
+      return this.$router.go(0);
+    },
   },
 };
 </script>
@@ -134,6 +158,7 @@ select {
   font-size: 14px;
   line-height: 17px;
   color: #124e96;
+  cursor: pointer;
 }
 .send {
   width: 95px;
@@ -145,6 +170,7 @@ select {
   font-size: 14px;
   line-height: 17px;
   color: #fff;
+  cursor: pointer;
 }
 .chartPart {
   width: 100%;

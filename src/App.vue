@@ -10,23 +10,21 @@
 </template>
 
 <script>
-  export default {
-    data(){
-      return{
-
-      }
+export default {
+  data() {
+    return {};
+  },
+  computed: {
+    key() {
+      return this.$route.path + Math.random();
     },
-    computed:{
-      key(){
-        return this.$route.path + Math.random();
-      }
-    }
-  }
+  },
+};
 </script>
 
 <style>
-body{
-  margin:0;
+body {
+  margin: 0;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
