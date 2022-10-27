@@ -33,7 +33,17 @@
         </div>
       </div>
     </div>
-    <div class="chartPart">
+    <div
+      class="chartPart"
+      v-if="
+        (text.yearText !== '' && text.yearText !== undefined) ||
+        (text.areaText !== '' && text.areaText !== undefined)
+      "
+    >
+      <div class="chartTitle">
+        {{ text.yearText }}{{ text.areaText }}之我國留學生人數
+      </div>
+      <div class="brownLine2"></div>
       <chartTest22 />
     </div>
     <footerComponent />
@@ -45,6 +55,7 @@
 import navbarComponent from "@/components/BaseComponent/navbarComponent.vue";
 import footerComponent from "@/components/BaseComponent/footerComponent.vue";
 import chartTest22 from "@/components/chartTest22.vue";
+import store from "../store";
 
 export default {
   name: "SearchView",
@@ -57,6 +68,10 @@ export default {
     return {
       areas: "",
       years: "",
+      text: {
+        areaText: store.state.chartInformation.areas,
+        yearText: store.state.chartInformation.years,
+      },
     };
   },
   methods: {
@@ -65,7 +80,6 @@ export default {
         areas: this.areas,
         years: this.years,
       };
-      // console.log(chartData);
       this.$store.commit("changeStatus");
       this.$store.commit("addChartInformation", chartData);
       return this.$router.go(0);
@@ -171,6 +185,25 @@ select {
   line-height: 17px;
   color: #fff;
   cursor: pointer;
+}
+.chartTitle {
+  height: 54px;
+  font-weight: 900;
+  font-size: 28px;
+  line-height: 28px;
+  color: #000000;
+  text-align: left;
+  margin-left: 120px;
+  margin-right: 120px;
+  border-bottom: 2px solid #c0c4cc;
+}
+.brownLine2 {
+  position: absolute;
+  left: 120px;
+  top: 654px;
+  width: 50px;
+  height: 2px;
+  background-color: #b89068;
 }
 .chartPart {
   width: 100%;

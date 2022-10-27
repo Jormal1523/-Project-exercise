@@ -100,6 +100,7 @@ export default {
       mount109Asia: [],
       mount109Africa: [],
     });
+
     const form = ref("");
 
     if (store.state.chartStatus == "pie") {
@@ -358,32 +359,13 @@ export default {
         sum108Asia,
         sum109Asia
       );
-      data.mountAfrica.push(sum109Africa);
-
-      // console.log(sum105Europe);
-      // console.log(sum105America);
-      // console.log(sum105Oceania);
-      // console.log(sum105Asia);
-      // console.log(sum106Europe);
-      // console.log(sum106America);
-      // console.log(sum106Oceania);
-      // console.log(sum106Asia);
-      // console.log(sum107Europe);
-      // console.log(sum107America);
-      // console.log(sum107Oceania);
-      // console.log(sum107Asia);
-      // console.log(sum108Europe);
-      // console.log(sum108America);
-      // console.log(sum108Oceania);
-      // console.log(sum108Asia);
-      // console.log(sum109Europe);
-      // console.log(sum109America);
-      // console.log(sum109Oceania);
-      // console.log(sum109Asia);
-      // console.log(sum109Africa);
-      // console.log(data.newsdata);
-      // console.log(data.year);
-      // console.log(data.mount);
+      data.mountAfrica.push(
+        sum105Africa,
+        sum106Africa,
+        sum107Africa,
+        sum108Africa,
+        sum109Africa
+      );
     });
     console.log(store.state.chartInformation.areas);
     console.log(store.state.chartInformation.years);
