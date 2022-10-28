@@ -367,8 +367,8 @@ export default {
         sum109Africa
       );
     });
-    console.log(store.state.chartInformation.areas);
-    console.log(store.state.chartInformation.years);
+    // console.log(store.state.chartInformation.areas);
+    // console.log(store.state.chartInformation.years);
 
     // 判斷是用年份還是洲別
     const chartLabels = ref("");
@@ -704,11 +704,12 @@ export default {
   justify-content: center;
 }
 .mainChartContainer {
-  max-width: 1334px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  width: 800px;
+  /* display: flex; */
+}
+.chartContainer {
+  width: 800px;
+  margin-top: 64px;
 }
 .sideBar {
   width: 150px;
@@ -725,9 +726,5 @@ export default {
 .btn {
   margin-bottom: 22px;
   cursor: pointer;
-}
-.chartContainer {
-  width: 800px;
-  margin-bottom: 64px;
 }
 </style>

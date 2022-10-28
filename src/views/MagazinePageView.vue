@@ -81,7 +81,7 @@ export default {
   margin-top: 57px;
 }
 .title {
-  width: 100%;
+  max-width: 100%;
   text-align: left;
   font-weight: 700;
   font-size: 46px;
@@ -198,8 +198,16 @@ export default {
     padding-left: 0px;
     padding-right: 0px;
   }
+  .listComponent {
+    margin-left: 21px;
+    margin-right: 21px;
+  }
 }
 @media screen and (max-width: 750px) {
+  .title,
+  .date {
+    padding: 0px 18px;
+  }
   .sencondPart {
     margin-left: 26px;
     margin-right: 26px;
@@ -207,10 +215,11 @@ export default {
   .listComponent {
     margin-top: 25px;
     max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 20px;
+    margin-right: 20px;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
   }
   .listContent {
     width: 238px;

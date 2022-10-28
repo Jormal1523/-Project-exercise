@@ -121,7 +121,7 @@ export default {
   margin-left: 124px;
   margin-right: 124px;
   margin-top: 52px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .img2 {
   max-width: 500px;
@@ -265,19 +265,19 @@ export default {
   }
   .headlinesBar {
     flex-direction: column;
-    margin-left: 0px;
-    margin-right: 0px;
+    max-width: 498px;
+    margin-left: 20px;
+    margin-right: 20px;
+    /* padding-left: 20px; */
+    /* padding-right: 20px; */
     height: 538px;
+    overflow: hidden;
   }
   .img2 {
-    max-width: 498px;
-    height: 277;
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
   }
   .content {
-    max-width: 498px;
+    width: 100%;
     margin-top: 54px;
     margin-left: auto;
     margin-right: auto;
@@ -291,17 +291,18 @@ export default {
   .listComponent {
     margin-top: 25px;
     max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 20px;
+    margin-right: 20px;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
   }
   .lists {
     margin-right: 0px;
     margin-top: 28px;
   }
   .img3 {
-    width: 246.8px;
+    /* width: 246.8px; */
     height: 126.97px;
   }
   .listBtn {
