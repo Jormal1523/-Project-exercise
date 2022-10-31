@@ -36,15 +36,14 @@
     <div
       class="chartPart"
       v-if="
-        (text.yearText !== '' && text.yearText !== undefined) ||
-        (text.areaText !== '' && text.areaText !== undefined)
+        changeKey !== null && (chartData.areas !== '' || chartData.years !== '')
       "
     >
       <div class="chartTitle">
-        {{ text.yearText }}{{ text.areaText }}之我國留學生人數
+        {{ chartData.years }}{{ chartData.areas }}之我國留學生人數
       </div>
       <div class="brownLine2"></div>
-      <chartTest22 />
+      <chartTest22 :chartData="this.chartData" :key="changeKey" />
     </div>
     <footerComponent />
   </div>
@@ -55,7 +54,6 @@
 import navbarComponent from "@/components/BaseComponent/navbarComponent.vue";
 import footerComponent from "@/components/BaseComponent/footerComponent.vue";
 import chartTest22 from "@/components/chartTest22.vue";
-import store from "../store";
 
 export default {
   name: "SearchView",
@@ -68,27 +66,32 @@ export default {
     return {
       areas: "",
       years: "",
-      text: {
-        areaText: store.state.chartInformation.areas,
-        yearText: store.state.chartInformation.years,
-      },
+      chartData: {},
+      changeKey: null,
     };
   },
   methods: {
     submitChart() {
-      let chartData = {
+      this.chartData = {
         areas: this.areas,
         years: this.years,
       };
       this.$store.commit("changeStatus");
-      this.$store.commit("addChartInformation", chartData);
-      return this.$router.go(0);
+
+      //vue 点击父组件，刷新子组件，改變key值
+      this.changeKey = Math.random();
     },
     clean() {
       this.areas = "";
       this.years = "";
-      this.$store.commit("clearInformation");
-      return this.$router.go(0);
+      this.chartData = "";
+      this.changeKey = null;
+      // return this.$router.go(0);
+    },
+  },
+  computed: {
+    key() {
+      return this.$route.path + Math.random();
     },
   },
 };

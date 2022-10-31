@@ -9,6 +9,7 @@
           :id="pieChart.id"
           :type="pieChart.type"
           :data="pieChart.data"
+          style="width: 400px; margin-left: auto; margin-right: auto"
         ></vue3-chart-js>
       </div>
       <div class="chartContainer" v-if="form == 'bar'">
@@ -36,6 +37,7 @@
           :id="radarChart.id"
           :type="radarChart.type"
           :data="radarChart.data"
+          style="width: 400px; margin-left: auto; margin-right: auto"
         ></vue3-chart-js>
       </div>
     </div>
@@ -56,10 +58,16 @@ import store from "../store";
 
 export default {
   name: "App",
+  props: {
+    chartData: {
+      type: Object,
+    },
+  },
   components: {
     Vue3ChartJs,
   },
-  setup() {
+  setup(props) {
+    console.log(props.chartData);
     const data = reactive({
       newsdata: "",
       continent: ["歐洲", "美洲", "大洋洲", "亞洲", "非洲"],
@@ -153,11 +161,11 @@ export default {
       let array = [];
 
       //filter 函數寫法
-      console.log(data.newsdata);
-      let array3 = res.data.filter(
-        (res) => res["年度"] == 105 && res["洲別"] == "歐洲"
-      );
-      console.log(array3[0].總人數.replace(/[,]+/g, ""));
+      // console.log(data.newsdata);
+      // let array3 = res.data.filter(
+      //   (res) => res["年度"] == 105 && res["洲別"] == "歐洲"
+      // );
+      // console.log(array3[0].總人數.replace(/[,]+/g, ""));
 
       //手刻filter
       //重構res.data,去除千分位,並依照年份以及洲別篩選
@@ -371,10 +379,11 @@ export default {
     // console.log(store.state.chartInformation.years);
 
     // 判斷是用年份還是洲別
+
     const chartLabels = ref("");
-    if (store.state.chartInformation.areas) {
+    if (props.chartData.areas) {
       chartLabels.value = data.years;
-    } else if (store.state.chartInformation.years) {
+    } else if (props.chartData.years) {
       chartLabels.value = data.continent;
     } else {
       chartLabels.value = "";
@@ -382,179 +391,176 @@ export default {
 
     const chartData = ref("");
     //選擇區域
-    if (store.state.chartInformation.areas == "歐洲") {
+    if (props.chartData.areas == "歐洲") {
       chartData.value = data.mountEurope;
-    } else if (store.state.chartInformation.areas == "美洲") {
+    } else if (props.chartData.areas == "美洲") {
       chartData.value = data.mountAmerica;
-    } else if (store.state.chartInformation.areas == "大洋洲") {
+    } else if (props.chartData.areas == "大洋洲") {
       chartData.value = data.mountOceania;
-    } else if (store.state.chartInformation.areas == "亞洲") {
+    } else if (props.chartData.areas == "亞洲") {
       chartData.value = data.mountAsia;
-    } else if (store.state.chartInformation.areas == "非洲") {
+    } else if (props.chartData.areas == "非洲") {
       chartData.value = data.mountAfrica;
     }
 
     //選擇年分
-    if (store.state.chartInformation.years == 105) {
+    if (props.chartData.years == 105) {
       chartData.value = data.mount105;
-    } else if (store.state.chartInformation.years == 106) {
+    } else if (props.chartData.years == 106) {
       chartData.value = data.mount106;
-    } else if (store.state.chartInformation.years == 107) {
+    } else if (props.chartData.years == 107) {
       chartData.value = data.mount107;
-    } else if (store.state.chartInformation.years == 108) {
+    } else if (props.chartData.years == 108) {
       chartData.value = data.mount108;
-    } else if (store.state.chartInformation.years == 109) {
+    } else if (props.chartData.years == 109) {
       chartData.value = data.mount109;
     }
 
     //同時選擇年分與洲別
-    if (
-      store.state.chartInformation.areas == "歐洲" &&
-      store.state.chartInformation.years == 105
-    ) {
+    if (props.chartData.areas == "歐洲" && props.chartData.years == 105) {
       chartData.value = data.mount105Europe;
       chartLabels.value = [105];
     } else if (
-      store.state.chartInformation.areas == "歐洲" &&
-      store.state.chartInformation.years == 106
+      props.chartData.areas == "歐洲" &&
+      props.chartData.years == 106
     ) {
       chartData.value = data.mount106Europe;
       chartLabels.value = [106];
     } else if (
-      store.state.chartInformation.areas == "歐洲" &&
-      store.state.chartInformation.years == 107
+      props.chartData.areas == "歐洲" &&
+      props.chartData.years == 107
     ) {
       chartData.value = data.mount107Europe;
       chartLabels.value = [107];
     } else if (
-      store.state.chartInformation.areas == "歐洲" &&
-      store.state.chartInformation.years == 108
+      props.chartData.areas == "歐洲" &&
+      props.chartData.years == 108
     ) {
       chartData.value = data.mount108Europe;
       chartLabels.value = [108];
     } else if (
-      store.state.chartInformation.areas == "歐洲" &&
-      store.state.chartInformation.years == 109
+      props.chartData.areas == "歐洲" &&
+      props.chartData.years == 109
     ) {
       chartData.value = data.mount109Europe;
       chartLabels.value = [109];
     } else if (
-      store.state.chartInformation.areas == "美洲" &&
-      store.state.chartInformation.years == 105
+      props.chartData.areas == "美洲" &&
+      props.chartData.years == 105
     ) {
       chartData.value = data.mount105America;
       chartLabels.value = [105];
     } else if (
-      store.state.chartInformation.areas == "美洲" &&
-      store.state.chartInformation.years == 106
+      props.chartData.areas == "美洲" &&
+      props.chartData.years == 106
     ) {
       chartData.value = data.mount106America;
       chartLabels.value = [106];
     } else if (
-      store.state.chartInformation.areas == "美洲" &&
-      store.state.chartInformation.years == 107
+      props.chartData.areas == "美洲" &&
+      props.chartData.years == 107
     ) {
       chartData.value = data.mount107America;
       chartLabels.value = [107];
     } else if (
-      store.state.chartInformation.areas == "美洲" &&
-      store.state.chartInformation.years == 108
+      props.chartData.areas == "美洲" &&
+      props.chartData.years == 108
     ) {
       chartData.value = data.mount108America;
       chartLabels.value = [108];
     } else if (
-      store.state.chartInformation.areas == "美洲" &&
-      store.state.chartInformation.years == 109
+      props.chartData.areas == "美洲" &&
+      props.chartData.years == 109
     ) {
       chartData.value = data.mount109America;
       chartLabels.value = [109];
     } else if (
-      store.state.chartInformation.areas == "大洋洲" &&
-      store.state.chartInformation.years == 105
+      props.chartData.areas == "大洋洲" &&
+      props.chartData.years == 105
     ) {
       chartData.value = data.mount105Oceania;
       chartLabels.value = [105];
     } else if (
-      store.state.chartInformation.areas == "大洋洲" &&
-      store.state.chartInformation.years == 106
+      props.chartData.areas == "大洋洲" &&
+      props.chartData.years == 106
     ) {
       chartData.value = data.mount106Oceania;
       chartLabels.value = [106];
     } else if (
-      store.state.chartInformation.areas == "大洋洲" &&
-      store.state.chartInformation.years == 107
+      props.chartData.areas == "大洋洲" &&
+      props.chartData.years == 107
     ) {
       chartData.value = data.mount107Oceania;
       chartLabels.value = [107];
     } else if (
-      store.state.chartInformation.areas == "大洋洲" &&
-      store.state.chartInformation.years == 108
+      props.chartData.areas == "大洋洲" &&
+      props.chartData.years == 108
     ) {
       chartData.value = data.mount108Oceania;
       chartLabels.value = [108];
     } else if (
-      store.state.chartInformation.areas == "大洋洲" &&
-      store.state.chartInformation.years == 109
+      props.chartData.areas == "大洋洲" &&
+      props.chartData.years == 109
     ) {
       chartData.value = data.mount109Oceania;
       chartLabels.value = [109];
     } else if (
-      store.state.chartInformation.areas == "亞洲" &&
-      store.state.chartInformation.years == 105
+      props.chartData.areas == "亞洲" &&
+      props.chartData.years == 105
     ) {
       chartData.value = data.mount105Asia;
       chartLabels.value = [105];
     } else if (
-      store.state.chartInformation.areas == "亞洲" &&
-      store.state.chartInformation.years == 106
+      props.chartData.areas == "亞洲" &&
+      props.chartData.years == 106
     ) {
       chartData.value = data.mount106Asia;
       chartLabels.value = [106];
     } else if (
-      store.state.chartInformation.areas == "亞洲" &&
-      store.state.chartInformation.years == 107
+      props.chartData.areas == "亞洲" &&
+      props.chartData.years == 107
     ) {
       chartData.value = data.mount107Asia;
       chartLabels.value = [107];
     } else if (
-      store.state.chartInformation.areas == "亞洲" &&
-      store.state.chartInformation.years == 108
+      props.chartData.areas == "亞洲" &&
+      props.chartData.years == 108
     ) {
       chartData.value = data.mount108Asia;
       chartLabels.value = [108];
     } else if (
-      store.state.chartInformation.areas == "亞洲" &&
-      store.state.chartInformation.years == 109
+      props.chartData.areas == "亞洲" &&
+      props.chartData.years == 109
     ) {
       chartData.value = data.mount109Asia;
       chartLabels.value = [109];
     } else if (
-      store.state.chartInformation.areas == "非洲" &&
-      store.state.chartInformation.years == 105
+      props.chartData.areas == "非洲" &&
+      props.chartData.years == 105
     ) {
       chartData.value = data.mount105Africa;
       chartLabels.value = [105];
     } else if (
-      store.state.chartInformation.areas == "非洲" &&
-      store.state.chartInformation.years == 106
+      props.chartData.areas == "非洲" &&
+      props.chartData.years == 106
     ) {
       chartData.value = data.mount106Africa;
       chartLabels.value = [106];
     } else if (
-      store.state.chartInformation.areas == "非洲" &&
-      store.state.chartInformation.years == 107
+      props.chartData.areas == "非洲" &&
+      props.chartData.years == 107
     ) {
       chartData.value = data.mount107Africa;
       chartLabels.value = [107];
     } else if (
-      store.state.chartInformation.areas == "非洲" &&
-      store.state.chartInformation.years == 108
+      props.chartData.areas == "非洲" &&
+      props.chartData.years == 108
     ) {
       chartData.value = data.mount108Africa;
       chartLabels.value = [108];
     } else if (
-      store.state.chartInformation.areas == "非洲" &&
-      store.state.chartInformation.years == 109
+      props.chartData.areas == "非洲" &&
+      props.chartData.years == 109
     ) {
       chartData.value = data.mount109Africa;
       chartLabels.value = [109];
@@ -705,11 +711,15 @@ export default {
 }
 .mainChartContainer {
   width: 800px;
-  /* display: flex; */
 }
 .chartContainer {
-  width: 800px;
+  width: 100%;
+  height: 500px;
   margin-top: 64px;
+  border: 1px solid #b0bec5;
+  box-shadow: 0px 4px 8px;
+  border-radius: 8px;
+  margin-bottom: 64px;
 }
 .sideBar {
   width: 150px;

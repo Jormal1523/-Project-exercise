@@ -5,20 +5,12 @@ import createVuexAlong from 'vuex-along'
 export default createStore({
   state: {
     chartStatus:"",
-    chartInformation:{}
   },
   getters: {
   },
   mutations: {
     changeStatus(state){
       state.chartStatus = "pie"
-    },
-    addChartInformation(state,data){
-      state.chartInformation = data
-    },
-    clearInformation(state) {
-      state.chartStatus = ""
-      state.chartInformation = "";
     },
   },
   actions: {
