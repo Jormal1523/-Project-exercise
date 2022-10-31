@@ -153,11 +153,11 @@ export default {
       let array = [];
 
       //filter 函數寫法
-      // console.log(data.newsdata);
-      // let array3 = res.data.filter(
-      //   (res) => res.年度 == 105 && res.洲別 == "歐洲"
-      // );
-      // console.log(array3[0].總人數.replace(/[,]+/g, ""));
+      console.log(data.newsdata);
+      let array3 = res.data.filter(
+        (res) => res["年度"] == 105 && res["洲別"] == "歐洲"
+      );
+      console.log(array3[0].總人數.replace(/[,]+/g, ""));
 
       //手刻filter
       //重構res.data,去除千分位,並依照年份以及洲別篩選

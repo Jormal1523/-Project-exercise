@@ -1,6 +1,7 @@
 <template>
   <div class="mainContainer">
     <navbarComponent />
+    <h1 v-if="status == true">載入中...</h1>
     <div class="container">
       <div class="topPart">
         <div class="title">{{ cls.標題 }}</div>
@@ -13,6 +14,7 @@
     </div>
     <div class="listBar">
       <div class="headlines">文章列表</div>
+      <h1 v-if="status == true">載入中...</h1>
       <div class="listComponent">
         <div class="lists" v-for="(items, index) in article" :key="index">
           <router-link class="listBtn" :to="`/magazine/${index}`">
@@ -46,6 +48,7 @@ export default {
   },
   data() {
     return {
+      status: true,
       cls: {},
       article: [],
     };
@@ -60,6 +63,7 @@ export default {
     for (let i = 0; i < 10; i++) {
       this.article.push(data[i]);
     }
+    this.status = false;
   },
 };
 </script>

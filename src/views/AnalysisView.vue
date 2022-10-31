@@ -14,6 +14,9 @@
             >看更多>></router-link
           >
         </div>
+        <h1 style="color: white; margin-top: 200px" v-if="status == true">
+          載入中...
+        </h1>
         <div class="linkPageContainer">
           <router-link
             class="linkPage"
@@ -51,6 +54,7 @@ export default {
   },
   data() {
     return {
+      status: true,
       cls: [],
     };
   },
@@ -59,6 +63,7 @@ export default {
     for (let i = 0; i < 4; i++) {
       this.cls.push(data[i]);
     }
+    this.status = false;
     // console.log(this.cls)
   },
 };

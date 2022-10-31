@@ -9,6 +9,7 @@
     >
       <div class="headlinesBar">
         <img class="img2" src="https://picsum.photos/id/1015/1000/600" alt="" />
+        <h1 v-if="status == true">載入中...</h1>
         <div class="content">
           <div class="title">{{ headline.title }}</div>
           <div class="nav" v-html="headline.nav"></div>
@@ -19,6 +20,7 @@
     <div class="listBar">
       <div class="headlines">文章列表</div>
       <div class="brownLine2"></div>
+      <h1 v-if="status == true">載入中...</h1>
       <div class="listComponent">
         <div class="lists" v-for="(items, index) in cls" :key="index">
           <router-link class="listBtn" :to="`/magazine/${index + 1}`">
@@ -53,6 +55,7 @@ export default {
   },
   data() {
     return {
+      status: true,
       headline: {
         title: "",
         nav: "",
@@ -69,6 +72,7 @@ export default {
     for (let i = 1; i < 10; i++) {
       this.cls.push(data[i]);
     }
+    this.status = false;
     // console.log(this.headline.title)
     // console.log(this.cls)
   },
