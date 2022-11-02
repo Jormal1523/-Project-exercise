@@ -139,7 +139,8 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 }
-.area {
+.area,
+.year {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -153,11 +154,7 @@ select {
   border-radius: 5px;
   border: 1px solid #d8dce5;
 }
-.year {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+
 .btnGroup {
   width: 228px;
   margin-left: auto;
@@ -211,5 +208,31 @@ select {
 .chartPart {
   width: 100%;
   margin-top: 84px;
+}
+@media screen and (max-width: 750px) {
+  .topPart {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .brownLine,
+  .brownLine2 {
+    display: none;
+  }
+  .searchBar {
+    width: 350px;
+  }
+  .area,
+  .year {
+    justify-content: space-around;
+  }
+  select {
+    margin-right: 0px;
+  }
+  .chartTitle {
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+  }
 }
 </style>

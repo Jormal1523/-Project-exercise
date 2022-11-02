@@ -9,7 +9,7 @@
           :id="pieChart.id"
           :type="pieChart.type"
           :data="pieChart.data"
-          style="width: 400px; margin-left: auto; margin-right: auto"
+          style="width: 350px; margin-left: auto; margin-right: auto"
         ></vue3-chart-js>
       </div>
       <div class="chartContainer" v-if="form == 'bar'">
@@ -37,7 +37,7 @@
           :id="radarChart.id"
           :type="radarChart.type"
           :data="radarChart.data"
-          style="width: 400px; margin-left: auto; margin-right: auto"
+          style="width: 350px; margin-left: auto; margin-right: auto"
         ></vue3-chart-js>
       </div>
     </div>
@@ -736,5 +736,36 @@ export default {
 .btn {
   margin-bottom: 22px;
   cursor: pointer;
+}
+@media screen and (max-width: 1000px) {
+  .mainChartContainer {
+    width: 500px;
+  }
+}
+@media screen and (max-width: 750px) {
+  .mainChartContainer {
+    width: 350px;
+  }
+  .container {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .sideBar {
+    width: 368px;
+    height: 80px;
+    margin-top: 30px;
+    margin-left: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    box-shadow: 0px 4px 8px #b0bec5;
+    border-radius: 8px;
+  }
+  .chartContainer {
+    margin-top: 30px;
+  }
+  .btn {
+    margin-bottom: 0px;
+  }
 }
 </style>

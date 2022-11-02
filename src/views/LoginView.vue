@@ -11,13 +11,6 @@
             size="30"
             v-model="account"
             v-bind:class="{ 'is-invalid': accountError }"
-            style="
-              border: 1px solid #558aba;
-              width: 430px;
-              height: 45px;
-              border-radius: 8px;
-              font-size: 20px;
-            "
           />
           <div class="invalid-feedback">{{ accountErrMsg }}</div>
         </div>
@@ -28,30 +21,12 @@
             size="30"
             v-model="password"
             v-bind:class="{ 'is-invalid': passwordError }"
-            style="
-              border: 1px solid #558aba;
-              width: 430px;
-              height: 45px;
-              border-radius: 8px;
-              font-size: 20px;
-            "
           />
           <div class="invalid-feedback">{{ passwordErrMsg }}</div>
         </div>
         <div class="identify">identify</div>
         <div class="identifyInput">
-          <input
-            type="text"
-            size="30"
-            v-model="identify"
-            style="
-              border: 1px solid #558aba;
-              width: 300px;
-              height: 45px;
-              border-radius: 8px;
-              font-size: 20px;
-            "
-          />
+          <input type="text" size="30" v-model="identify" />
           <div @click="refreshCode" style="cursor: pointer; margin-left: 5px">
             <Identify :identifyCode="identifyCode"></Identify>
           </div>
@@ -149,12 +124,14 @@ export default {
         alert("驗證碼錯誤");
         this.identify = "";
         this.identifyCodeError = true;
+        this.identifyCode = "";
+        this.makeCode(this.identifyCodes, 5);
       }
     },
     // 切換驗證碼
     refreshCode() {
       this.identifyCode = "";
-      this.makeCode(this.identifyCodes, 4);
+      this.makeCode(this.identifyCodes, 5);
       console.log(this.identifyCode);
     },
     // 生成隨機驗證碼
@@ -213,13 +190,28 @@ export default {
 .identifyInput {
   margin-top: 15px;
 }
+.accountInput input,
+.passwordInput input {
+  border: 1px solid #558aba;
+  width: 430px;
+  height: 45px;
+  border-radius: 8px;
+  font-size: 20px;
+}
 .identifyInput {
   display: flex;
   justify-content: center;
   align-content: center;
 }
+.identifyInput input {
+  border: 1px solid #558aba;
+  width: 300px;
+  height: 45px;
+  border-radius: 8px;
+  font-size: 20px;
+}
 .loginBtn {
-  margin-top: 198px;
+  margin-top: 50px;
 }
 .submitBtn {
   width: 135px;
@@ -235,5 +227,52 @@ export default {
 }
 .invalid-feedback {
   color: red;
+}
+@media screen and (max-width: 750px) {
+  .loginComponent {
+    width: 242px;
+    height: 575px;
+    margin: auto;
+    border: 2px solid #558aba;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px;
+  }
+  .title {
+    font-size: 30px;
+    margin-top: 20px;
+  }
+  .account,
+  .password,
+  .identify {
+    margin-top: 25px;
+    margin-left: 23px;
+    text-align: left;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 19px;
+    color: #558aba;
+  }
+  .accountInput,
+  .passwordInput,
+  .identifyInput {
+    margin-top: 5px;
+  }
+  .accountInput input,
+  .passwordInput input,
+  .identifyInput input {
+    border: 1px solid #558aba;
+    width: 200px;
+    height: 35px;
+    border-radius: 8px;
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  .identifyInput {
+    flex-direction: column;
+    align-items: center;
+  }
+  .loginBtn {
+    margin-top: 20px;
+  }
 }
 </style>
