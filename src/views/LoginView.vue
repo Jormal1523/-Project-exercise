@@ -48,6 +48,8 @@
 import navbarComponent from "@/components/BaseComponent/navbarComponent.vue";
 import footerComponent from "@/components/BaseComponent/footerComponent.vue";
 import Identify from "@/components/Identify.vue";
+import axios from "axios";
+import { Base64 } from "js-base64";
 
 export default {
   name: "LoginView",
@@ -113,10 +115,10 @@ export default {
   },
   methods: {
     async submitAccount() {
-      // let userData = {
-      //   account: this.account,
-      //   password: this.password,
-      // };
+      let userData = {
+        email: this.account,
+        password: this.password,
+      };
       if (this.accountError === true || this.passwordError === true) {
         alert("輸入資料格式錯誤");
         return false;
@@ -126,6 +128,32 @@ export default {
         this.identifyCodeError = true;
         this.identifyCode = "";
         this.makeCode(this.identifyCodes, 5);
+      } else {
+        try {
+          let { data } = await axios.post(
+            "http://localhost:3600/auth",
+            userData
+          );
+          console.log(data.accessToken);
+          let payloadString = data.accessToken.split(".");
+          //使用Base64编码和解码
+          console.log(payloadString[1]);
+          let decodedString = Base64.decode(payloadString[1]);
+          // let array = Object.values(decodedString);
+          console.log(decodedString);
+          if (data) {
+            alert(`您好，${decodedString.name}`);
+            // this.$store.commit("addUserInformation", data);
+            // return this.$router.push("/");
+          } else {
+            alert("錯誤的帳號或密碼!!");
+            this.account = "";
+            this.password = "";
+            return this.$router.push("/login");
+          }
+        } catch (err) {
+          alert("404");
+        }
       }
     },
     // 切換驗證碼

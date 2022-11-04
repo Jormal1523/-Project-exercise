@@ -42,10 +42,18 @@
       </div>
     </div>
     <div class="sideBar" v-if="form !== ''">
-      <div class="btn" @click="pie">圓餅圖</div>
-      <div class="btn" @click="bar">長條圖</div>
-      <div class="btn" @click="line">折線圖</div>
-      <div class="btn" @click="radar">雷達圖</div>
+      <div class="btn" :class="{ active: isActive === pie }" @click="pie">
+        圓餅圖
+      </div>
+      <div class="btn" :class="{ active: isActive === bar }" @click="bar">
+        長條圖
+      </div>
+      <div class="btn" :class="{ active: isActive === line }" @click="line">
+        折線圖
+      </div>
+      <div class="btn" :class="{ active: isActive === radar }" @click="radar">
+        雷達圖
+      </div>
     </div>
   </div>
 </template>
@@ -67,7 +75,7 @@ export default {
     Vue3ChartJs,
   },
   setup(props) {
-    console.log(props.chartData);
+    // console.log(props.chartData);
     const data = reactive({
       newsdata: "",
       continent: ["歐洲", "美洲", "大洋洲", "亞洲", "非洲"],
@@ -110,25 +118,31 @@ export default {
     });
 
     const form = ref("");
+    const isActive = ref(pie);
 
     if (store.state.chartStatus == "pie") {
       form.value = "pie";
+      isActive.value = pie;
     }
 
     function pie() {
       form.value = "pie";
+      isActive.value = pie;
       console.log(form);
     }
     function bar() {
       form.value = "bar";
+      isActive.value = bar;
       console.log(form);
     }
     function line() {
       form.value = "line";
+      isActive.value = line;
       console.log(form);
     }
     function radar() {
       form.value = "radar";
+      isActive.value = radar;
       console.log(form);
     }
     axios.get("/mock/test.json").then((res) => {
@@ -160,7 +174,7 @@ export default {
       let sum109Africa = 0;
       let array = [];
 
-      //filter 函數寫法
+      // filter 函數寫法
       // console.log(data.newsdata);
       // let array3 = res.data.filter(
       //   (res) => res["年度"] == 105 && res["洲別"] == "歐洲"
@@ -699,6 +713,7 @@ export default {
       bar,
       radar,
       form,
+      isActive,
     };
   },
 };
@@ -736,6 +751,9 @@ export default {
 .btn {
   margin-bottom: 22px;
   cursor: pointer;
+}
+.active {
+  border-bottom: 1px solid #0d8abc;
 }
 @media screen and (max-width: 1000px) {
   .mainChartContainer {
