@@ -5,10 +5,36 @@
       <router-link class="btn1" to="/">analysis</router-link>
       <router-link class="btn2" to="/magazine">magazine</router-link>
       <router-link class="btn3" to="/search">search</router-link>
-      <router-link class="btn4" to="/login">SIGN IN</router-link>
+      <router-link class="btn4" to="/login" v-if="this.userInformation == ''"
+        >SIGN IN</router-link
+      >
+      <button class="btn4" v-if="this.userInformation !== ''" @click="logOut()">
+        SIGN OUT
+      </button>
     </div>
   </div>
 </template>
+
+<script>
+import store from "../../store";
+export default {
+  data() {
+    return {
+      userInformation: store.state.userInformation,
+    };
+  },
+  methods: {
+    logOut() {
+      let result = confirm("確定要登出嗎?");
+      if (result) {
+        alert("您已登出");
+        this.$store.commit("clearUserInformation");
+        return this.$router.push("/login");
+      }
+    },
+  },
+};
+</script>
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;400&display=swap");
@@ -51,6 +77,8 @@
   text-decoration: none;
   color: aliceblue;
   border-radius: 10px;
+  border: transparent;
+  cursor: pointer;
 }
 .btn1:hover,
 .btn2:hover,

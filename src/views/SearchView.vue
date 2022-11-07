@@ -44,6 +44,7 @@
       </div>
       <div class="brownLine2"></div>
       <chartTest22 :chartData="this.chartData" :key="changeKey" />
+      <test123 :chartData="this.chartData" :key="changeKey" />
     </div>
     <footerComponent />
   </div>
@@ -54,6 +55,7 @@
 import navbarComponent from "@/components/BaseComponent/navbarComponent.vue";
 import footerComponent from "@/components/BaseComponent/footerComponent.vue";
 import chartTest22 from "@/components/chartTest22.vue";
+import test123 from "@/components/test123.vue";
 
 export default {
   name: "SearchView",
@@ -61,6 +63,7 @@ export default {
     navbarComponent,
     footerComponent,
     chartTest22,
+    test123,
   },
   data() {
     return {

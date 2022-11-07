@@ -139,20 +139,19 @@ export default {
           //使用Base64编码和解码
           console.log(payloadString[1]);
           let decodedString = Base64.decode(payloadString[1]);
-          // let array = Object.values(decodedString);
+          let payloadObj = JSON.parse(decodedString);
           console.log(decodedString);
+          console.log(payloadObj);
           if (data) {
-            alert(`您好，${decodedString.name}`);
-            // this.$store.commit("addUserInformation", data);
-            // return this.$router.push("/");
-          } else {
-            alert("錯誤的帳號或密碼!!");
-            this.account = "";
-            this.password = "";
-            return this.$router.push("/login");
+            alert(`您好，${payloadObj.name}`);
+            this.$store.commit("addUserInformation", payloadObj);
+            return this.$router.push("/");
           }
         } catch (err) {
-          alert("404");
+          alert("錯誤的帳號或密碼!!");
+          this.account = "";
+          this.password = "";
+          return this.$router.push("/login");
         }
       }
     },
