@@ -15,7 +15,7 @@
       <div class="chartContainer" v-if="form == 'bar'">
         <h2>長條圖</h2>
         <vue3-chart-js
-          v-if="data.newsdata != ''"
+          v-if="data.newsdata !== ''"
           :id="barChart.id"
           :type="barChart.type"
           :data="barChart.data"
@@ -24,7 +24,7 @@
       <div class="chartContainer" v-if="form == 'line'">
         <h2>折線圖</h2>
         <vue3-chart-js
-          v-if="data.newsdata != ''"
+          v-if="data.newsdata !== ''"
           :id="lineChart.id"
           :type="lineChart.type"
           :data="lineChart.data"
@@ -33,7 +33,7 @@
       <div class="chartContainer" v-if="form == 'radar'">
         <h2>雷達圖</h2>
         <vue3-chart-js
-          v-if="data.newsdata != ''"
+          v-if="data.newsdata !== ''"
           :id="radarChart.id"
           :type="radarChart.type"
           :data="radarChart.data"
@@ -63,6 +63,7 @@ import Vue3ChartJs from "@j-t-mcc/vue3-chartjs";
 import axios from "axios";
 import { reactive, ref } from "@vue/runtime-core";
 import store from "../store";
+
 export default {
   name: "App",
   props: {
@@ -110,24 +111,26 @@ export default {
     // 判斷是用年份還是洲別
 
     const chartLabels = ref("");
-    if (props.chartData.areas) {
+    if (props.chartData.areas && props.chartData.years == "") {
       chartLabels.value = data.years;
-    } else if (props.chartData.years) {
+    } else if (props.chartData.years && props.chartData.areas == "") {
       chartLabels.value = data.continent;
+      // } else if (props.chartData.years && props.chartData.areas) {
+      //   chartLabels.value = props.chartData.years;
     } else {
-      chartLabels.value = "";
+      chartLabels.value = [props.chartData.years];
     }
 
     axios.get("/mock/test.json").then((res) => {
       data.newsdata = res.data;
 
-      // filter 函數寫法
-      // console.log(data.newsdata);
-
       let array = res.data.filter(
         (res) =>
-          (res["年度"] == props.chartData.years &&
-            res["洲別"] == props.chartData.areas) ||
+          res["年度"] == props.chartData.years &&
+          res["洲別"] == props.chartData.areas
+      );
+      let array3 = res.data.filter(
+        (res) =>
           res["年度"] == props.chartData.years ||
           res["洲別"] == props.chartData.areas
       );
@@ -135,7 +138,7 @@ export default {
 
       if (props.chartData.areas == "") {
         for (let i = 0; i < data.continent.length; i++) {
-          let array2 = array.filter(function (res) {
+          let array2 = array3.filter(function (res) {
             return res["洲別"] == data.continent[i];
           });
           let arraySum = ref(0);
@@ -143,12 +146,13 @@ export default {
             const mount = array2[j].總人數.toString().replace(/[,]+/g, "");
             arraySum.value += Number(mount);
           }
-          data.chartData.push(arraySum);
+
+          data.chartData.push(arraySum.value);
           // console.log(array2);
         }
       } else if (props.chartData.years == "") {
         for (let i = 0; i < data.continent.length; i++) {
-          let array2 = array.filter(function (res) {
+          let array2 = array3.filter(function (res) {
             return res["年度"] == data.years[i];
           });
           let arraySum = ref(0);
@@ -156,7 +160,7 @@ export default {
             const mount = array2[j].總人數.toString().replace(/[,]+/g, "");
             arraySum.value += Number(mount);
           }
-          data.chartData.push(arraySum);
+          data.chartData.push(arraySum.value);
           // console.log(array2);
         }
       } else {
@@ -166,9 +170,11 @@ export default {
           const mount = array[j].總人數.toString().replace(/[,]+/g, "");
           arraySum.value += Number(mount);
         }
-        data.chartData.push(arraySum);
+        data.chartData.push(arraySum.value);
       }
     });
+
+    console.log(data.chartData);
 
     const pieChart = {
       id: "pie",

@@ -5,7 +5,7 @@ import MagazinePageView from '../views/MagazinePageView.vue'
 import SearchView from '../views/SearchView.vue'
 import LoginView from '../views/LoginView.vue'
 import chartTest22 from '../components/chartTest22.vue'
-import test123 from '../components/test123.vue'
+import chart from '../components/chart.vue'
 
 const routes = [
   {
@@ -39,9 +39,9 @@ const routes = [
     component: chartTest22
   },
   {
-    path: '/test123',
-    name: 'test123',
-    component: test123
+    path: '/chart',
+    name: 'chart',
+    component: chart
   },
 ]
 

@@ -15,7 +15,7 @@
       <div class="chartContainer" v-if="form == 'bar'">
         <h2>長條圖</h2>
         <vue3-chart-js
-          v-if="data.newsdata != ''"
+          v-if="data.newsdata !== ''"
           :id="barChart.id"
           :type="barChart.type"
           :data="barChart.data"
@@ -24,7 +24,7 @@
       <div class="chartContainer" v-if="form == 'line'">
         <h2>折線圖</h2>
         <vue3-chart-js
-          v-if="data.newsdata != ''"
+          v-if="data.newsdata !== ''"
           :id="lineChart.id"
           :type="lineChart.type"
           :data="lineChart.data"
@@ -33,7 +33,7 @@
       <div class="chartContainer" v-if="form == 'radar'">
         <h2>雷達圖</h2>
         <vue3-chart-js
-          v-if="data.newsdata != ''"
+          v-if="data.newsdata !== ''"
           :id="radarChart.id"
           :type="radarChart.type"
           :data="radarChart.data"
