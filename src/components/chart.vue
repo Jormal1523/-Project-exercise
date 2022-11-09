@@ -115,8 +115,6 @@ export default {
       chartLabels.value = data.years;
     } else if (props.chartData.years && props.chartData.areas == "") {
       chartLabels.value = data.continent;
-      // } else if (props.chartData.years && props.chartData.areas) {
-      //   chartLabels.value = props.chartData.years;
     } else {
       chartLabels.value = [props.chartData.years];
     }
@@ -164,17 +162,17 @@ export default {
           // console.log(array2);
         }
       } else {
-        console.log(array);
+        // console.log(array);
         let arraySum = ref(0);
-        for (let j = 0; j < array.length; j++) {
-          const mount = array[j].總人數.toString().replace(/[,]+/g, "");
+        for (let i = 0; i < array.length; i++) {
+          const mount = array[i].總人數.toString().replace(/[,]+/g, "");
           arraySum.value += Number(mount);
         }
         data.chartData.push(arraySum.value);
       }
     });
 
-    console.log(data.chartData);
+    // console.log(data.chartData);
 
     const pieChart = {
       id: "pie",

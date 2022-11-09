@@ -14,9 +14,98 @@
             >看更多>></router-link
           >
         </div>
-        <h1 style="color: white; margin-top: 200px" v-if="status == true">
+        <!-- <h1 style="color: white; margin-top: 200px" v-if="status == true">
           載入中...
-        </h1>
+        </h1> -->
+        <content-loader
+          v-if="status == true"
+          class="loader1"
+          viewBox="0 0 476 600"
+          primaryColor="#f3f3f3"
+          secondaryColor="#878485"
+        >
+          <rect x="48" y="50" rx="3" ry="3" width="95" height="96" />
+          <rect x="180" y="50" rx="3" ry="3" width="210" height="16" />
+          <rect x="180" y="80" rx="3" ry="3" width="210" height="16" />
+          <rect x="180" y="110" rx="3" ry="3" width="210" height="16" />
+          <rect x="180" y="140" rx="3" ry="3" width="50" height="6" />
+          <rect x="48" y="200" rx="3" ry="3" width="95" height="96" />
+          <rect x="180" y="200" rx="3" ry="3" width="210" height="16" />
+          <rect x="180" y="230" rx="3" ry="3" width="210" height="16" />
+          <rect x="180" y="260" rx="3" ry="3" width="210" height="16" />
+          <rect x="180" y="290" rx="3" ry="3" width="50" height="6" />
+          <rect x="48" y="350" rx="3" ry="3" width="95" height="96" />
+          <rect x="180" y="350" rx="3" ry="3" width="210" height="16" />
+          <rect x="180" y="380" rx="3" ry="3" width="210" height="16" />
+          <rect x="180" y="410" rx="3" ry="3" width="210" height="16" />
+          <rect x="180" y="440" rx="3" ry="3" width="50" height="6" />
+          <rect x="48" y="500" rx="3" ry="3" width="95" height="96" />
+          <rect x="180" y="500" rx="3" ry="3" width="210" height="16" />
+          <rect x="180" y="530" rx="3" ry="3" width="210" height="16" />
+          <rect x="180" y="560" rx="3" ry="3" width="210" height="16" />
+          <rect x="180" y="590" rx="3" ry="3" width="50" height="6" />
+        </content-loader>
+
+        <content-loader
+          v-if="status == true"
+          class="loader2"
+          viewBox="0 0 900 400"
+          primaryColor="#f3f3f3"
+          secondaryColor="#878485"
+        >
+          <rect x="148" y="20" rx="3" ry="3" width="95" height="96" />
+          <rect x="280" y="20" rx="3" ry="3" width="180" height="16" />
+          <rect x="280" y="50" rx="3" ry="3" width="180" height="16" />
+          <rect x="280" y="80" rx="3" ry="3" width="180" height="16" />
+          <rect x="280" y="110" rx="3" ry="3" width="50" height="6" />
+          <rect x="148" y="150" rx="3" ry="3" width="95" height="96" />
+          <rect x="280" y="150" rx="3" ry="3" width="180" height="16" />
+          <rect x="280" y="180" rx="3" ry="3" width="180" height="16" />
+          <rect x="280" y="210" rx="3" ry="3" width="180" height="16" />
+          <rect x="280" y="240" rx="3" ry="3" width="50" height="6" />
+          <rect x="500" y="20" rx="3" ry="3" width="95" height="96" />
+          <rect x="630" y="20" rx="3" ry="3" width="180" height="16" />
+          <rect x="630" y="50" rx="3" ry="3" width="180" height="16" />
+          <rect x="630" y="80" rx="3" ry="3" width="180" height="16" />
+          <rect x="630" y="110" rx="3" ry="3" width="50" height="6" />
+          <rect x="500" y="150" rx="3" ry="3" width="95" height="96" />
+          <rect x="630" y="150" rx="3" ry="3" width="180" height="16" />
+          <rect x="630" y="180" rx="3" ry="3" width="180" height="16" />
+          <rect x="630" y="210" rx="3" ry="3" width="180" height="16" />
+          <rect x="630" y="240" rx="3" ry="3" width="50" height="6" />
+        </content-loader>
+
+        <content-loader
+          v-if="status == true"
+          class="loader3"
+          viewBox="0 0 400 600"
+          primaryColor="#f3f3f3"
+          secondaryColor="#878485"
+        >
+          <rect x="30" y="40" rx="3" ry="3" width="156" height="96" />
+          <rect x="30" y="160" rx="3" ry="3" width="150" height="16" />
+          <rect x="30" y="180" rx="3" ry="3" width="150" height="16" />
+          <rect x="30" y="200" rx="3" ry="3" width="150" height="16" />
+          <rect x="30" y="220" rx="3" ry="3" width="50" height="6" />
+
+          <rect x="30" y="300" rx="3" ry="3" width="156" height="96" />
+          <rect x="30" y="420" rx="3" ry="3" width="150" height="16" />
+          <rect x="30" y="440" rx="3" ry="3" width="150" height="16" />
+          <rect x="30" y="460" rx="3" ry="3" width="150" height="16" />
+          <rect x="30" y="480" rx="3" ry="3" width="50" height="6" />
+
+          <rect x="220" y="40" rx="3" ry="3" width="156" height="96" />
+          <rect x="220" y="160" rx="3" ry="3" width="150" height="16" />
+          <rect x="220" y="180" rx="3" ry="3" width="150" height="16" />
+          <rect x="220" y="200" rx="3" ry="3" width="150" height="16" />
+          <rect x="220" y="220" rx="3" ry="3" width="50" height="6" />
+
+          <rect x="220" y="300" rx="3" ry="3" width="156" height="96" />
+          <rect x="220" y="420" rx="3" ry="3" width="150" height="16" />
+          <rect x="220" y="440" rx="3" ry="3" width="150" height="16" />
+          <rect x="220" y="460" rx="3" ry="3" width="150" height="16" />
+          <rect x="220" y="480" rx="3" ry="3" width="50" height="6" />
+        </content-loader>
         <div class="linkPageContainer">
           <router-link
             class="linkPage"
@@ -46,11 +135,13 @@
 import navbarComponent from "@/components/BaseComponent/navbarComponent.vue";
 import footerComponent from "@/components/BaseComponent/footerComponent.vue";
 import axios from "axios";
+import { ContentLoader } from "vue-content-loader";
 export default {
   name: "AnalysisView",
   components: {
     navbarComponent,
     footerComponent,
+    ContentLoader,
   },
   data() {
     return {
@@ -85,6 +176,12 @@ export default {
   height: 709px;
   display: flex;
   justify-content: space-around;
+}
+.loader2 {
+  display: none;
+}
+.loader3 {
+  display: none;
 }
 .title {
   max-width: 208px;
@@ -173,6 +270,15 @@ export default {
   height: 96px;
 }
 @media screen and (max-width: 930px) {
+  .loader1 {
+    display: none;
+  }
+  .loader2 {
+    display: block;
+  }
+  .loader3 {
+    display: none;
+  }
   .container {
     flex-direction: column;
     background-image: url("../assets/cover768.png");
@@ -246,6 +352,12 @@ export default {
   .container {
     height: 279px;
     background-position: center;
+  }
+  .loader2 {
+    display: none;
+  }
+  .loader3 {
+    display: block;
   }
   .title {
     position: absolute;
