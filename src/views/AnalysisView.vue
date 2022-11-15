@@ -118,8 +118,9 @@
               src="https://picsum.photos/id/1062/500/300"
               alt=""
             />
-            <div class="textTitle">
-              {{ items.標題 }}
+            <div class="text">
+              <div class="textTitle">{{ items.標題 }}</div>
+
               <div class="date">{{ items.發布日期 }}</div>
             </div>
           </router-link>
@@ -248,7 +249,7 @@ export default {
   margin-top: 41px;
   text-decoration: none;
 }
-.textTitle {
+.text {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -259,6 +260,13 @@ export default {
   line-height: 20px;
   text-align: left;
   color: #ffffff;
+}
+.textTitle {
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 .date {
   font-weight: 500;
@@ -361,7 +369,8 @@ export default {
   }
   .title {
     position: absolute;
-    width: 171px;
+    /* max-width: 200px; */
+    white-space: nowrap;
     height: 62.81px;
     left: 50%;
     transform: translateX(-50%);
@@ -385,7 +394,7 @@ export default {
     margin-bottom: 0px;
     padding-left: 0px;
   }
-  .textTitle {
+  .text {
     color: #606266;
   }
   .date {

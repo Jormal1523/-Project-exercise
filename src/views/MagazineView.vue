@@ -10,7 +10,7 @@
       <div class="headlinesBar">
         <img class="img2" src="https://picsum.photos/id/1015/1000/600" alt="" />
         <div class="content">
-          <h1 v-if="status == true" style="width: 400px">載入中...</h1>
+          <h2 v-if="status == true" style="width: 400px">載入中...</h2>
           <div class="title">{{ headline.title }}</div>
           <div class="nav" v-html="headline.nav"></div>
           <div class="date">{{ headline.date }}</div>
@@ -20,7 +20,7 @@
     <div class="listBar">
       <div class="headlines">文章列表</div>
       <div class="brownLine2"></div>
-      <h1 v-if="status == true">載入中...</h1>
+      <h2 v-if="status == true">載入中...</h2>
       <div class="listComponent">
         <div class="lists" v-for="(items, index) in cls" :key="index">
           <router-link class="listBtn" :to="`/magazine/${index + 1}`">

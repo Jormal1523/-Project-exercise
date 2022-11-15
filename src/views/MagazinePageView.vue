@@ -1,7 +1,7 @@
 <template>
   <div class="mainContainer">
     <navbarComponent />
-    <h1 v-if="status == true">載入中...</h1>
+    <h2 v-if="status == true">載入中...</h2>
     <div class="container">
       <div class="topPart">
         <div class="title">{{ cls.標題 }}</div>
@@ -14,7 +14,7 @@
     </div>
     <div class="listBar">
       <div class="headlines">文章列表</div>
-      <h1 v-if="status == true">載入中...</h1>
+      <h2 v-if="status == true">載入中...</h2>
       <div class="listComponent">
         <div class="lists" v-for="(items, index) in article" :key="index">
           <router-link class="listBtn" :to="`/magazine/${index}`">
