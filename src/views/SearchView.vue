@@ -33,8 +33,18 @@
         </div>
       </div>
     </div>
-    <div class="chartPart">
-      <chartTest22 />
+    <div
+      class="chartPart"
+      v-if="
+        changeKey !== null && (chartData.areas !== '' || chartData.years !== '')
+      "
+    >
+      <div class="chartTitle">
+        {{ chartData.years }}{{ chartData.areas }}之我國留學生人數
+      </div>
+      <div class="brownLine2"></div>
+      <!-- <chartTest22 :chartData="this.chartData" :key="changeKey" /> -->
+      <chart :chartData="this.chartData" :key="changeKey" />
     </div>
     <footerComponent />
   </div>
@@ -44,37 +54,47 @@
 // @ is an alias to /src
 import navbarComponent from "@/components/BaseComponent/navbarComponent.vue";
 import footerComponent from "@/components/BaseComponent/footerComponent.vue";
-import chartTest22 from "@/components/chartTest22.vue";
+// import chartTest22 from "@/components/chartTest22.vue";
+import chart from "@/components/chart.vue";
 
 export default {
   name: "SearchView",
   components: {
     navbarComponent,
     footerComponent,
-    chartTest22,
+    // chartTest22,
+    chart,
   },
   data() {
     return {
       areas: "",
       years: "",
+      chartData: {},
+      changeKey: null,
     };
   },
   methods: {
     submitChart() {
-      let chartData = {
+      this.chartData = {
         areas: this.areas,
         years: this.years,
       };
-      // console.log(chartData);
       this.$store.commit("changeStatus");
-      this.$store.commit("addChartInformation", chartData);
-      return this.$router.go(0);
+
+      //vue 点击父组件，刷新子组件，改變key值
+      this.changeKey = Math.random();
     },
     clean() {
       this.areas = "";
       this.years = "";
-      this.$store.commit("clearInformation");
-      return this.$router.go(0);
+      this.chartData = "";
+      this.changeKey = null;
+      // return this.$router.go(0);
+    },
+  },
+  computed: {
+    key() {
+      return this.$route.path + Math.random();
     },
   },
 };
@@ -122,7 +142,8 @@ export default {
   flex-direction: column;
   justify-content: space-between;
 }
-.area {
+.area,
+.year {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -136,11 +157,7 @@ select {
   border-radius: 5px;
   border: 1px solid #d8dce5;
 }
-.year {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+
 .btnGroup {
   width: 228px;
   margin-left: auto;
@@ -172,8 +189,53 @@ select {
   color: #fff;
   cursor: pointer;
 }
+.chartTitle {
+  height: 54px;
+  font-weight: 900;
+  font-size: 28px;
+  line-height: 28px;
+  color: #000000;
+  text-align: left;
+  margin-left: 120px;
+  margin-right: 120px;
+  border-bottom: 2px solid #c0c4cc;
+}
+.brownLine2 {
+  position: absolute;
+  left: 120px;
+  top: 654px;
+  width: 50px;
+  height: 2px;
+  background-color: #b89068;
+}
 .chartPart {
   width: 100%;
   margin-top: 84px;
+}
+@media screen and (max-width: 750px) {
+  .topPart {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .brownLine,
+  .brownLine2 {
+    display: none;
+  }
+  .searchBar {
+    width: 350px;
+  }
+  .area,
+  .year {
+    justify-content: space-around;
+  }
+  select {
+    margin-right: 0px;
+  }
+  .chartTitle {
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 60px;
+  }
 }
 </style>

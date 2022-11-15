@@ -1,6 +1,7 @@
 <template>
   <div class="mainContainer">
     <navbarComponent />
+    <h1 v-if="status == true">載入中...</h1>
     <div class="container">
       <div class="topPart">
         <div class="title">{{ cls.標題 }}</div>
@@ -13,6 +14,7 @@
     </div>
     <div class="listBar">
       <div class="headlines">文章列表</div>
+      <h1 v-if="status == true">載入中...</h1>
       <div class="listComponent">
         <div class="lists" v-for="(items, index) in article" :key="index">
           <router-link class="listBtn" :to="`/magazine/${index}`">
@@ -46,6 +48,7 @@ export default {
   },
   data() {
     return {
+      status: true,
       cls: {},
       article: [],
     };
@@ -60,6 +63,7 @@ export default {
     for (let i = 0; i < 10; i++) {
       this.article.push(data[i]);
     }
+    this.status = false;
   },
 };
 </script>
@@ -81,7 +85,7 @@ export default {
   margin-top: 57px;
 }
 .title {
-  width: 100%;
+  max-width: 100%;
   text-align: left;
   font-weight: 700;
   font-size: 46px;
@@ -198,8 +202,16 @@ export default {
     padding-left: 0px;
     padding-right: 0px;
   }
+  .listComponent {
+    margin-left: 21px;
+    margin-right: 21px;
+  }
 }
 @media screen and (max-width: 750px) {
+  .title,
+  .date {
+    padding: 0px 18px;
+  }
   .sencondPart {
     margin-left: 26px;
     margin-right: 26px;
@@ -207,10 +219,11 @@ export default {
   .listComponent {
     margin-top: 25px;
     max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 20px;
+    margin-right: 20px;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
   }
   .listContent {
     width: 238px;

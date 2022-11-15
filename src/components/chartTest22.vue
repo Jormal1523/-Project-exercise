@@ -9,12 +9,13 @@
           :id="pieChart.id"
           :type="pieChart.type"
           :data="pieChart.data"
+          style="width: 350px; margin-left: auto; margin-right: auto"
         ></vue3-chart-js>
       </div>
       <div class="chartContainer" v-if="form == 'bar'">
         <h2>長條圖</h2>
         <vue3-chart-js
-          v-if="data.newsdata != ''"
+          v-if="data.newsdata !== ''"
           :id="barChart.id"
           :type="barChart.type"
           :data="barChart.data"
@@ -23,7 +24,7 @@
       <div class="chartContainer" v-if="form == 'line'">
         <h2>折線圖</h2>
         <vue3-chart-js
-          v-if="data.newsdata != ''"
+          v-if="data.newsdata !== ''"
           :id="lineChart.id"
           :type="lineChart.type"
           :data="lineChart.data"
@@ -32,18 +33,27 @@
       <div class="chartContainer" v-if="form == 'radar'">
         <h2>雷達圖</h2>
         <vue3-chart-js
-          v-if="data.newsdata != ''"
+          v-if="data.newsdata !== ''"
           :id="radarChart.id"
           :type="radarChart.type"
           :data="radarChart.data"
+          style="width: 350px; margin-left: auto; margin-right: auto"
         ></vue3-chart-js>
       </div>
     </div>
     <div class="sideBar" v-if="form !== ''">
-      <div class="btn" @click="pie">圓餅圖</div>
-      <div class="btn" @click="bar">長條圖</div>
-      <div class="btn" @click="line">折線圖</div>
-      <div class="btn" @click="radar">雷達圖</div>
+      <div class="btn" :class="{ active: isActive === pie }" @click="pie">
+        圓餅圖
+      </div>
+      <div class="btn" :class="{ active: isActive === bar }" @click="bar">
+        長條圖
+      </div>
+      <div class="btn" :class="{ active: isActive === line }" @click="line">
+        折線圖
+      </div>
+      <div class="btn" :class="{ active: isActive === radar }" @click="radar">
+        雷達圖
+      </div>
     </div>
   </div>
 </template>
@@ -56,10 +66,16 @@ import store from "../store";
 
 export default {
   name: "App",
+  props: {
+    chartData: {
+      type: Object,
+    },
+  },
   components: {
     Vue3ChartJs,
   },
-  setup() {
+  setup(props) {
+    // console.log(props.chartData);
     const data = reactive({
       newsdata: "",
       continent: ["歐洲", "美洲", "大洋洲", "亞洲", "非洲"],
@@ -100,26 +116,33 @@ export default {
       mount109Asia: [],
       mount109Africa: [],
     });
+
     const form = ref("");
+    const isActive = ref(pie);
 
     if (store.state.chartStatus == "pie") {
       form.value = "pie";
+      isActive.value = pie;
     }
 
     function pie() {
       form.value = "pie";
+      isActive.value = pie;
       console.log(form);
     }
     function bar() {
       form.value = "bar";
+      isActive.value = bar;
       console.log(form);
     }
     function line() {
       form.value = "line";
+      isActive.value = line;
       console.log(form);
     }
     function radar() {
       form.value = "radar";
+      isActive.value = radar;
       console.log(form);
     }
     axios.get("/mock/test.json").then((res) => {
@@ -151,10 +174,10 @@ export default {
       let sum109Africa = 0;
       let array = [];
 
-      //filter 函數寫法
+      // filter 函數寫法
       // console.log(data.newsdata);
       // let array3 = res.data.filter(
-      //   (res) => res.年度 == 105 && res.洲別 == "歐洲"
+      //   (res) => res["年度"] == 105 && res["洲別"] == "歐洲"
       // );
       // console.log(array3[0].總人數.replace(/[,]+/g, ""));
 
@@ -358,41 +381,23 @@ export default {
         sum108Asia,
         sum109Asia
       );
-      data.mountAfrica.push(sum109Africa);
-
-      // console.log(sum105Europe);
-      // console.log(sum105America);
-      // console.log(sum105Oceania);
-      // console.log(sum105Asia);
-      // console.log(sum106Europe);
-      // console.log(sum106America);
-      // console.log(sum106Oceania);
-      // console.log(sum106Asia);
-      // console.log(sum107Europe);
-      // console.log(sum107America);
-      // console.log(sum107Oceania);
-      // console.log(sum107Asia);
-      // console.log(sum108Europe);
-      // console.log(sum108America);
-      // console.log(sum108Oceania);
-      // console.log(sum108Asia);
-      // console.log(sum109Europe);
-      // console.log(sum109America);
-      // console.log(sum109Oceania);
-      // console.log(sum109Asia);
-      // console.log(sum109Africa);
-      // console.log(data.newsdata);
-      // console.log(data.year);
-      // console.log(data.mount);
+      data.mountAfrica.push(
+        sum105Africa,
+        sum106Africa,
+        sum107Africa,
+        sum108Africa,
+        sum109Africa
+      );
     });
-    console.log(store.state.chartInformation.areas);
-    console.log(store.state.chartInformation.years);
+    // console.log(store.state.chartInformation.areas);
+    // console.log(store.state.chartInformation.years);
 
     // 判斷是用年份還是洲別
+
     const chartLabels = ref("");
-    if (store.state.chartInformation.areas) {
+    if (props.chartData.areas) {
       chartLabels.value = data.years;
-    } else if (store.state.chartInformation.years) {
+    } else if (props.chartData.years) {
       chartLabels.value = data.continent;
     } else {
       chartLabels.value = "";
@@ -400,179 +405,176 @@ export default {
 
     const chartData = ref("");
     //選擇區域
-    if (store.state.chartInformation.areas == "歐洲") {
+    if (props.chartData.areas == "歐洲") {
       chartData.value = data.mountEurope;
-    } else if (store.state.chartInformation.areas == "美洲") {
+    } else if (props.chartData.areas == "美洲") {
       chartData.value = data.mountAmerica;
-    } else if (store.state.chartInformation.areas == "大洋洲") {
+    } else if (props.chartData.areas == "大洋洲") {
       chartData.value = data.mountOceania;
-    } else if (store.state.chartInformation.areas == "亞洲") {
+    } else if (props.chartData.areas == "亞洲") {
       chartData.value = data.mountAsia;
-    } else if (store.state.chartInformation.areas == "非洲") {
+    } else if (props.chartData.areas == "非洲") {
       chartData.value = data.mountAfrica;
     }
 
     //選擇年分
-    if (store.state.chartInformation.years == 105) {
+    if (props.chartData.years == 105) {
       chartData.value = data.mount105;
-    } else if (store.state.chartInformation.years == 106) {
+    } else if (props.chartData.years == 106) {
       chartData.value = data.mount106;
-    } else if (store.state.chartInformation.years == 107) {
+    } else if (props.chartData.years == 107) {
       chartData.value = data.mount107;
-    } else if (store.state.chartInformation.years == 108) {
+    } else if (props.chartData.years == 108) {
       chartData.value = data.mount108;
-    } else if (store.state.chartInformation.years == 109) {
+    } else if (props.chartData.years == 109) {
       chartData.value = data.mount109;
     }
 
     //同時選擇年分與洲別
-    if (
-      store.state.chartInformation.areas == "歐洲" &&
-      store.state.chartInformation.years == 105
-    ) {
+    if (props.chartData.areas == "歐洲" && props.chartData.years == 105) {
       chartData.value = data.mount105Europe;
       chartLabels.value = [105];
     } else if (
-      store.state.chartInformation.areas == "歐洲" &&
-      store.state.chartInformation.years == 106
+      props.chartData.areas == "歐洲" &&
+      props.chartData.years == 106
     ) {
       chartData.value = data.mount106Europe;
       chartLabels.value = [106];
     } else if (
-      store.state.chartInformation.areas == "歐洲" &&
-      store.state.chartInformation.years == 107
+      props.chartData.areas == "歐洲" &&
+      props.chartData.years == 107
     ) {
       chartData.value = data.mount107Europe;
       chartLabels.value = [107];
     } else if (
-      store.state.chartInformation.areas == "歐洲" &&
-      store.state.chartInformation.years == 108
+      props.chartData.areas == "歐洲" &&
+      props.chartData.years == 108
     ) {
       chartData.value = data.mount108Europe;
       chartLabels.value = [108];
     } else if (
-      store.state.chartInformation.areas == "歐洲" &&
-      store.state.chartInformation.years == 109
+      props.chartData.areas == "歐洲" &&
+      props.chartData.years == 109
     ) {
       chartData.value = data.mount109Europe;
       chartLabels.value = [109];
     } else if (
-      store.state.chartInformation.areas == "美洲" &&
-      store.state.chartInformation.years == 105
+      props.chartData.areas == "美洲" &&
+      props.chartData.years == 105
     ) {
       chartData.value = data.mount105America;
       chartLabels.value = [105];
     } else if (
-      store.state.chartInformation.areas == "美洲" &&
-      store.state.chartInformation.years == 106
+      props.chartData.areas == "美洲" &&
+      props.chartData.years == 106
     ) {
       chartData.value = data.mount106America;
       chartLabels.value = [106];
     } else if (
-      store.state.chartInformation.areas == "美洲" &&
-      store.state.chartInformation.years == 107
+      props.chartData.areas == "美洲" &&
+      props.chartData.years == 107
     ) {
       chartData.value = data.mount107America;
       chartLabels.value = [107];
     } else if (
-      store.state.chartInformation.areas == "美洲" &&
-      store.state.chartInformation.years == 108
+      props.chartData.areas == "美洲" &&
+      props.chartData.years == 108
     ) {
       chartData.value = data.mount108America;
       chartLabels.value = [108];
     } else if (
-      store.state.chartInformation.areas == "美洲" &&
-      store.state.chartInformation.years == 109
+      props.chartData.areas == "美洲" &&
+      props.chartData.years == 109
     ) {
       chartData.value = data.mount109America;
       chartLabels.value = [109];
     } else if (
-      store.state.chartInformation.areas == "大洋洲" &&
-      store.state.chartInformation.years == 105
+      props.chartData.areas == "大洋洲" &&
+      props.chartData.years == 105
     ) {
       chartData.value = data.mount105Oceania;
       chartLabels.value = [105];
     } else if (
-      store.state.chartInformation.areas == "大洋洲" &&
-      store.state.chartInformation.years == 106
+      props.chartData.areas == "大洋洲" &&
+      props.chartData.years == 106
     ) {
       chartData.value = data.mount106Oceania;
       chartLabels.value = [106];
     } else if (
-      store.state.chartInformation.areas == "大洋洲" &&
-      store.state.chartInformation.years == 107
+      props.chartData.areas == "大洋洲" &&
+      props.chartData.years == 107
     ) {
       chartData.value = data.mount107Oceania;
       chartLabels.value = [107];
     } else if (
-      store.state.chartInformation.areas == "大洋洲" &&
-      store.state.chartInformation.years == 108
+      props.chartData.areas == "大洋洲" &&
+      props.chartData.years == 108
     ) {
       chartData.value = data.mount108Oceania;
       chartLabels.value = [108];
     } else if (
-      store.state.chartInformation.areas == "大洋洲" &&
-      store.state.chartInformation.years == 109
+      props.chartData.areas == "大洋洲" &&
+      props.chartData.years == 109
     ) {
       chartData.value = data.mount109Oceania;
       chartLabels.value = [109];
     } else if (
-      store.state.chartInformation.areas == "亞洲" &&
-      store.state.chartInformation.years == 105
+      props.chartData.areas == "亞洲" &&
+      props.chartData.years == 105
     ) {
       chartData.value = data.mount105Asia;
       chartLabels.value = [105];
     } else if (
-      store.state.chartInformation.areas == "亞洲" &&
-      store.state.chartInformation.years == 106
+      props.chartData.areas == "亞洲" &&
+      props.chartData.years == 106
     ) {
       chartData.value = data.mount106Asia;
       chartLabels.value = [106];
     } else if (
-      store.state.chartInformation.areas == "亞洲" &&
-      store.state.chartInformation.years == 107
+      props.chartData.areas == "亞洲" &&
+      props.chartData.years == 107
     ) {
       chartData.value = data.mount107Asia;
       chartLabels.value = [107];
     } else if (
-      store.state.chartInformation.areas == "亞洲" &&
-      store.state.chartInformation.years == 108
+      props.chartData.areas == "亞洲" &&
+      props.chartData.years == 108
     ) {
       chartData.value = data.mount108Asia;
       chartLabels.value = [108];
     } else if (
-      store.state.chartInformation.areas == "亞洲" &&
-      store.state.chartInformation.years == 109
+      props.chartData.areas == "亞洲" &&
+      props.chartData.years == 109
     ) {
       chartData.value = data.mount109Asia;
       chartLabels.value = [109];
     } else if (
-      store.state.chartInformation.areas == "非洲" &&
-      store.state.chartInformation.years == 105
+      props.chartData.areas == "非洲" &&
+      props.chartData.years == 105
     ) {
       chartData.value = data.mount105Africa;
       chartLabels.value = [105];
     } else if (
-      store.state.chartInformation.areas == "非洲" &&
-      store.state.chartInformation.years == 106
+      props.chartData.areas == "非洲" &&
+      props.chartData.years == 106
     ) {
       chartData.value = data.mount106Africa;
       chartLabels.value = [106];
     } else if (
-      store.state.chartInformation.areas == "非洲" &&
-      store.state.chartInformation.years == 107
+      props.chartData.areas == "非洲" &&
+      props.chartData.years == 107
     ) {
       chartData.value = data.mount107Africa;
       chartLabels.value = [107];
     } else if (
-      store.state.chartInformation.areas == "非洲" &&
-      store.state.chartInformation.years == 108
+      props.chartData.areas == "非洲" &&
+      props.chartData.years == 108
     ) {
       chartData.value = data.mount108Africa;
       chartLabels.value = [108];
     } else if (
-      store.state.chartInformation.areas == "非洲" &&
-      store.state.chartInformation.years == 109
+      props.chartData.areas == "非洲" &&
+      props.chartData.years == 109
     ) {
       chartData.value = data.mount109Africa;
       chartLabels.value = [109];
@@ -711,6 +713,7 @@ export default {
       bar,
       radar,
       form,
+      isActive,
     };
   },
 };
@@ -722,11 +725,16 @@ export default {
   justify-content: center;
 }
 .mainChartContainer {
-  max-width: 1334px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  width: 800px;
+}
+.chartContainer {
+  width: 100%;
+  height: 500px;
+  margin-top: 64px;
+  border: 1px solid #b0bec5;
+  box-shadow: 0px 4px 8px;
+  border-radius: 8px;
+  margin-bottom: 64px;
 }
 .sideBar {
   width: 150px;
@@ -744,8 +752,38 @@ export default {
   margin-bottom: 22px;
   cursor: pointer;
 }
-.chartContainer {
-  width: 800px;
-  margin-bottom: 64px;
+.active {
+  border-bottom: 1px solid #0d8abc;
+}
+@media screen and (max-width: 1000px) {
+  .mainChartContainer {
+    width: 500px;
+  }
+}
+@media screen and (max-width: 750px) {
+  .mainChartContainer {
+    width: 350px;
+  }
+  .container {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .sideBar {
+    width: 368px;
+    height: 80px;
+    margin-top: 30px;
+    margin-left: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    box-shadow: 0px 4px 8px #b0bec5;
+    border-radius: 8px;
+  }
+  .chartContainer {
+    margin-top: 30px;
+  }
+  .btn {
+    margin-bottom: 0px;
+  }
 }
 </style>

@@ -4,7 +4,9 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </nav> -->
-    <router-view :key="key"></router-view>
+    <transition>
+      <router-view :key="key"></router-view>
+    </transition>
     <!-- <router-view/> -->
   </div>
 </template>
@@ -23,6 +25,20 @@ export default {
 </script>
 
 <style>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+
+.v-enter-to,
+.v-leave-from {
+  opacity: 1;
+}
 body {
   margin: 0;
 }

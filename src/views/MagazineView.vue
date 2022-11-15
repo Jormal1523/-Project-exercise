@@ -10,6 +10,7 @@
       <div class="headlinesBar">
         <img class="img2" src="https://picsum.photos/id/1015/1000/600" alt="" />
         <div class="content">
+          <h1 v-if="status == true" style="width: 400px">載入中...</h1>
           <div class="title">{{ headline.title }}</div>
           <div class="nav" v-html="headline.nav"></div>
           <div class="date">{{ headline.date }}</div>
@@ -19,6 +20,7 @@
     <div class="listBar">
       <div class="headlines">文章列表</div>
       <div class="brownLine2"></div>
+      <h1 v-if="status == true">載入中...</h1>
       <div class="listComponent">
         <div class="lists" v-for="(items, index) in cls" :key="index">
           <router-link class="listBtn" :to="`/magazine/${index + 1}`">
@@ -53,6 +55,7 @@ export default {
   },
   data() {
     return {
+      status: true,
       headline: {
         title: "",
         nav: "",
@@ -69,6 +72,7 @@ export default {
     for (let i = 1; i < 10; i++) {
       this.cls.push(data[i]);
     }
+    this.status = false;
     // console.log(this.headline.title)
     // console.log(this.cls)
   },
@@ -121,7 +125,7 @@ export default {
   margin-left: 124px;
   margin-right: 124px;
   margin-top: 52px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .img2 {
   max-width: 500px;
@@ -265,19 +269,19 @@ export default {
   }
   .headlinesBar {
     flex-direction: column;
-    margin-left: 0px;
-    margin-right: 0px;
+    max-width: 498px;
+    margin-left: 20px;
+    margin-right: 20px;
+    /* padding-left: 20px; */
+    /* padding-right: 20px; */
     height: 538px;
+    overflow: hidden;
   }
   .img2 {
-    max-width: 498px;
-    height: 277;
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
   }
   .content {
-    max-width: 498px;
+    width: 100%;
     margin-top: 54px;
     margin-left: auto;
     margin-right: auto;
@@ -291,17 +295,18 @@ export default {
   .listComponent {
     margin-top: 25px;
     max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 20px;
+    margin-right: 20px;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
   }
   .lists {
     margin-right: 0px;
     margin-top: 28px;
   }
   .img3 {
-    width: 246.8px;
+    /* width: 246.8px; */
     height: 126.97px;
   }
   .listBtn {
