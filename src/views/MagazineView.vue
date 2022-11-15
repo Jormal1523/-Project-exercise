@@ -142,7 +142,7 @@ export default {
   width: 100%;
   margin-top: 0px;
   font-weight: 700;
-  font-size: 36px;
+  font-size: 26px;
   line-height: 35px;
   text-align: left;
 }
@@ -274,7 +274,7 @@ export default {
     margin-right: 20px;
     /* padding-left: 20px; */
     /* padding-right: 20px; */
-    height: 538px;
+    min-height: 538px;
     overflow: hidden;
   }
   .img2 {
@@ -288,6 +288,7 @@ export default {
   }
   .nav {
     margin-top: 21px;
+    height: 96px;
   }
   .date {
     margin-top: 18px;
