@@ -17,15 +17,26 @@
           </select>
         </div>
         <div class="year">
-          <div>年分</div>
-          <select name="years" v-model="years">
-            <option value="">選擇年分</option>
-            <option value="105">105</option>
-            <option value="106">106</option>
-            <option value="107">107</option>
-            <option value="108">108</option>
-            <option value="109">109</option>
-          </select>
+          <div style="white-space: nowrap">年分</div>
+          <div class="yearSelect">
+            <select name="years" v-model="years" class="rwdSelect">
+              <option value="">選擇年分</option>
+              <option value="105">105</option>
+              <option value="106">106</option>
+              <option value="107">107</option>
+              <option value="108">108</option>
+              <option value="109">109</option>
+            </select>
+            <span></span>
+            <select name="years" v-model="years2" class="rwdSelect">
+              <option value="">選擇年分</option>
+              <option value="105">105</option>
+              <option value="106">106</option>
+              <option value="107">107</option>
+              <option value="108">108</option>
+              <option value="109">109</option>
+            </select>
+          </div>
         </div>
         <div class="btnGroup">
           <button class="clean" @click="clean">清除</button>
@@ -36,11 +47,15 @@
     <div
       class="chartPart"
       v-if="
-        changeKey !== null && (chartData.areas !== '' || chartData.years !== '')
+        changeKey !== null &&
+        (chartData.areas !== '' ||
+          chartData.years !== '' ||
+          chartData.years2 !== '')
       "
     >
       <div class="chartTitle">
-        {{ chartData.years }}{{ chartData.areas }}之我國留學生人數
+        {{ chartData.years }}{{ `  ${chartData.years2} `
+        }}{{ chartData.areas }}之我國留學生人數加總
       </div>
       <div class="brownLine2"></div>
       <!-- <chartTest22 :chartData="this.chartData" :key="changeKey" /> -->
@@ -69,6 +84,7 @@ export default {
     return {
       areas: "",
       years: "",
+      years2: "",
       chartData: {},
       changeKey: null,
     };
@@ -78,6 +94,7 @@ export default {
       this.chartData = {
         areas: this.areas,
         years: this.years,
+        years2: this.years2,
       };
       this.$store.commit("changeStatus");
 
@@ -87,6 +104,7 @@ export default {
     clean() {
       this.areas = "";
       this.years = "";
+      this.years2 = "";
       this.chartData = "";
       this.changeKey = null;
       // return this.$router.go(0);
@@ -148,6 +166,10 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
+.yearSelect {
+  display: flex;
+  margin-right: 96px;
+}
 select {
   color: #7d8087;
   margin-right: 96px;
@@ -157,7 +179,11 @@ select {
   border-radius: 5px;
   border: 1px solid #d8dce5;
 }
-
+.rwdSelect {
+  margin-left: 10px;
+  margin-right: 0px;
+  width: 108px;
+}
 .btnGroup {
   width: 228px;
   margin-left: auto;
@@ -229,6 +255,9 @@ select {
     justify-content: space-around;
   }
   select {
+    margin-right: 0px;
+  }
+  .yearSelect {
     margin-right: 0px;
   }
   .chartTitle {

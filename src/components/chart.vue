@@ -124,15 +124,19 @@ export default {
 
       let array = res.data.filter(
         (res) =>
-          res["年度"] == props.chartData.years &&
-          res["洲別"] == props.chartData.areas
+          (res["年度"] == props.chartData.years &&
+            res["洲別"] == props.chartData.areas) ||
+          (res["年度"] == props.chartData.years2 &&
+            res["洲別"] == props.chartData.areas)
       );
       let array3 = res.data.filter(
         (res) =>
           res["年度"] == props.chartData.years ||
+          res["年度"] == props.chartData.years2 ||
           res["洲別"] == props.chartData.areas
       );
       // console.log(array);
+      // console.log(array3);
 
       if (props.chartData.areas == "") {
         for (let i = 0; i < data.continent.length; i++) {
