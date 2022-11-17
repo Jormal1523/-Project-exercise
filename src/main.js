@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import Vuex from 'vuex'
 import store from './store'
 
 
@@ -10,4 +9,4 @@ router.afterEach(() => {
 	window.scrollTo(0, 0);
 });
 
-createApp(App).use(store).use(router).use(Vuex).mount('#app')
+createApp(App).use(router).use(store).mount('#app')

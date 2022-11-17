@@ -1,13 +1,10 @@
 <template>
   <div>
-    <!-- <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav> -->
-    <transition>
-      <router-view :key="key"></router-view>
-    </transition>
-    <!-- <router-view/> -->
+    <router-view v-slot="{ Component }">
+      <transition>
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </div>
 </template>
 
