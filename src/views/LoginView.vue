@@ -1,6 +1,5 @@
 <template>
   <div class="mainContainer">
-    <navbarComponent />
     <div class="loginComponent">
       <form>
         <div class="title">LOGIN</div>
@@ -40,13 +39,10 @@
         </div>
       </form>
     </div>
-    <footerComponent />
   </div>
 </template>
 
 <script>
-import navbarComponent from "@/components/BaseComponent/navbarComponent.vue";
-import footerComponent from "@/components/BaseComponent/footerComponent.vue";
 import Identify from "@/components/Identify.vue";
 import axios from "axios";
 import { Base64 } from "js-base64";
@@ -54,8 +50,6 @@ import { Base64 } from "js-base64";
 export default {
   name: "LoginView",
   components: {
-    navbarComponent,
-    footerComponent,
     Identify,
   },
   data() {
@@ -137,11 +131,11 @@ export default {
           console.log(data.accessToken);
           let payloadString = data.accessToken.split(".");
           //使用Base64编码和解码
-          console.log(payloadString[1]);
+          // console.log(payloadString[1]);
           let decodedString = Base64.decode(payloadString[1]);
           let payloadObj = JSON.parse(decodedString);
-          console.log(decodedString);
-          console.log(payloadObj);
+          // console.log(decodedString);
+          // console.log(payloadObj);
           if (data) {
             alert(`您好，${payloadObj.name}`);
             this.$store.commit("addUserInformation", payloadObj);

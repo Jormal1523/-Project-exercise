@@ -1,6 +1,5 @@
 <template>
   <div class="mainContainer">
-    <navbarComponent />
     <h2 v-if="status == true">載入中...</h2>
     <div class="container">
       <div class="topPart">
@@ -31,21 +30,15 @@
         </div>
       </div>
     </div>
-    <footerComponent />
   </div>
 </template>
 
 <script>
-import navbarComponent from "@/components/BaseComponent/navbarComponent.vue";
-import footerComponent from "@/components/BaseComponent/footerComponent.vue";
 import axios from "axios";
 
 export default {
   name: "MagazinePageView",
-  components: {
-    navbarComponent,
-    footerComponent,
-  },
+  components: {},
   data() {
     return {
       status: true,

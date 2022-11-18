@@ -1,6 +1,5 @@
 <template>
   <div class="mainContainer">
-    <navbarComponent />
     <div class="headlines">本周熱門頭條</div>
     <div class="brownLine"></div>
     <router-link
@@ -37,22 +36,16 @@
         </div>
       </div>
     </div>
-    <footerComponent />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import navbarComponent from "@/components/BaseComponent/navbarComponent.vue";
-import footerComponent from "@/components/BaseComponent/footerComponent.vue";
 import axios from "axios";
 
 export default {
   name: "MagazineView",
-  components: {
-    navbarComponent,
-    footerComponent,
-  },
+  components: {},
   data() {
     return {
       status: true,

@@ -1,15 +1,23 @@
 <template>
   <div>
-    <router-view v-slot="{ Component }">
+    <navbarComponent />
+    <router-view v-slot="{ Component }" :key="key">
       <transition>
         <component :is="Component" />
       </transition>
     </router-view>
+    <footerComponent />
   </div>
 </template>
 
 <script>
+import navbarComponent from "@/components/BaseComponent/navbarComponent.vue";
+import footerComponent from "@/components/BaseComponent/footerComponent.vue";
 export default {
+  components: {
+    navbarComponent,
+    footerComponent,
+  },
   data() {
     return {};
   },

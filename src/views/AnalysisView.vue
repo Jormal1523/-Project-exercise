@@ -1,6 +1,5 @@
 <template>
   <div class="mainContainer">
-    <navbarComponent />
     <div class="container">
       <div class="leftBar">
         <div class="title">探索週報</div>
@@ -127,21 +126,16 @@
         </div>
       </div>
     </div>
-    <footerComponent />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import navbarComponent from "@/components/BaseComponent/navbarComponent.vue";
-import footerComponent from "@/components/BaseComponent/footerComponent.vue";
 import axios from "axios";
 import { ContentLoader } from "vue-content-loader";
 export default {
   name: "AnalysisView",
   components: {
-    navbarComponent,
-    footerComponent,
     ContentLoader,
   },
   data() {

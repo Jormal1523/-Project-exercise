@@ -1,6 +1,5 @@
 <template>
   <div class="mainContainer">
-    <navbarComponent />
     <div class="topPart">
       <div class="title">快速分析總覽</div>
       <div class="brownLine"></div>
@@ -61,22 +60,17 @@
       <!-- <chartTest22 :chartData="this.chartData" :key="changeKey" /> -->
       <chart :chartData="this.chartData" :key="changeKey" />
     </div>
-    <footerComponent />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import navbarComponent from "@/components/BaseComponent/navbarComponent.vue";
-import footerComponent from "@/components/BaseComponent/footerComponent.vue";
 // import chartTest22 from "@/components/chartTest22.vue";
 import chart from "@/components/chart.vue";
 
 export default {
   name: "SearchView",
   components: {
-    navbarComponent,
-    footerComponent,
     // chartTest22,
     chart,
   },
@@ -108,11 +102,6 @@ export default {
       this.chartData = "";
       this.changeKey = null;
       // return this.$router.go(0);
-    },
-  },
-  computed: {
-    key() {
-      return this.$route.path + Math.random();
     },
   },
 };
