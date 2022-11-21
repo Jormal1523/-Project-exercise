@@ -269,7 +269,7 @@ export default {
 }
 .img1 {
   width: 95px;
-  height: 96px;
+  object-fit: cover;
 }
 @media screen and (max-width: 930px) {
   .loader1 {
@@ -346,6 +346,9 @@ export default {
     margin-left: 0px;
     margin-top: 20px;
   }
+  .text {
+    margin-left: 25px;
+  }
 }
 @media screen and (max-width: 750px) {
   .mainContainer {
@@ -390,13 +393,13 @@ export default {
   }
   .text {
     color: #606266;
+    margin-left: 0px;
   }
   .date {
     color: #606266;
   }
   .img1 {
     width: 100%;
-    /* height:149.57px; */
   }
   .linkPageContainer {
     min-width: 0px;

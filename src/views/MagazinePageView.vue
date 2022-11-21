@@ -154,8 +154,9 @@ export default {
   text-align: left;
 }
 .img3 {
-  width: 220px;
-  /* height: 200.52px; */
+  width: 100%;
+  object-fit: cover;
+  height: 200.52px;
 }
 .listTitle {
   width: 220px;
@@ -218,26 +219,20 @@ export default {
     flex-direction: column;
     overflow-x: hidden;
   }
-  .listContent {
-    width: 238px;
-  }
-  .listTitle {
-    width: 100%;
-  }
-  .listDate {
-    width: 100%;
-  }
+
   .lists {
     margin-right: 0px;
     margin-top: 28px;
   }
   .img3 {
-    /* width: 246.8px; */
-    height: 126.97px;
+    min-width: 120px;
+    height: 100%;
+    margin-right: 10px;
   }
   .listBtn {
     display: flex;
     justify-content: space-around;
+    height: 126.97px;
   }
 }
 </style>

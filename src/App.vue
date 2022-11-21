@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mainContainer">
     <navbarComponent />
     <router-view v-slot="{ Component }" :key="key">
       <transition>
@@ -30,6 +30,13 @@ export default {
 </script>
 
 <style>
+.mainContainer {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: "Lato", sans-serif;
+}
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.5s;

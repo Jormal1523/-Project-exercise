@@ -8,8 +8,8 @@
     >
       <div class="headlinesBar">
         <img class="img2" src="https://picsum.photos/id/1015/1000/600" alt="" />
+        <h2 v-if="status == true" class="loadingText">載入中...</h2>
         <div class="content">
-          <h2 v-if="status == true" style="width: 400px">載入中...</h2>
           <div class="title">{{ headline.title }}</div>
           <div class="nav" v-html="headline.nav"></div>
           <div class="date">{{ headline.date }}</div>
@@ -125,11 +125,17 @@ export default {
   /* min-width:300px; */
   height: 100%;
   display: flex;
+  object-fit: cover;
 }
 .content {
   margin-left: 45px;
   max-width: 564px;
   min-width: 200px;
+}
+.loadingText {
+  /* width: 400px; */
+  white-space: nowrap;
+  text-align: left;
 }
 .title {
   width: 100%;
@@ -185,8 +191,9 @@ export default {
   text-align: left;
 }
 .img3 {
-  width: 220px;
+  width: 100%;
   height: 200.52px;
+  object-fit: cover;
 }
 .listTitle {
   width: 220px;
@@ -237,6 +244,7 @@ export default {
     margin-left: 23px;
     margin-right: 23px;
   }
+
   .title {
     font-size: 22px;
     line-height: 25px;
@@ -262,7 +270,7 @@ export default {
   }
   .headlinesBar {
     flex-direction: column;
-    max-width: 498px;
+    /* max-width: 498px; */
     margin-left: 20px;
     margin-right: 20px;
     /* padding-left: 20px; */
@@ -272,12 +280,17 @@ export default {
   }
   .img2 {
     width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 54px;
   }
   .content {
     width: 100%;
-    margin-top: 54px;
     margin-left: auto;
     margin-right: auto;
+  }
+  .loadingText {
+    text-align: center;
   }
   .nav {
     margin-top: 21px;
@@ -300,12 +313,14 @@ export default {
     margin-top: 28px;
   }
   .img3 {
-    /* width: 246.8px; */
-    height: 126.97px;
+    min-width: 120px;
+    height: 100%;
+    margin-right: 10px;
   }
   .listBtn {
     display: flex;
     justify-content: space-around;
+    height: 126.97px;
   }
 }
 </style>

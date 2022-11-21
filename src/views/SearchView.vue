@@ -53,8 +53,11 @@
       "
     >
       <div class="chartTitle">
-        {{ chartData.years }}{{ `  ${chartData.years2} `
-        }}{{ chartData.areas }}之我國留學生人數加總
+        <div>
+          {{ chartData.years }}{{ `  ${chartData.years2} `
+          }}{{ chartData.areas }}
+        </div>
+        <div>我國留學生人數情況</div>
       </div>
       <div class="brownLine2"></div>
       <!-- <chartTest22 :chartData="this.chartData" :key="changeKey" /> -->
@@ -205,7 +208,7 @@ select {
   cursor: pointer;
 }
 .chartTitle {
-  height: 54px;
+  height: 82px;
   font-weight: 900;
   font-size: 28px;
   line-height: 28px;
@@ -214,11 +217,12 @@ select {
   margin-left: 120px;
   margin-right: 120px;
   border-bottom: 2px solid #c0c4cc;
+  white-space: nowrap;
 }
 .brownLine2 {
   position: absolute;
   left: 120px;
-  top: 654px;
+  top: 682px;
   width: 50px;
   height: 2px;
   background-color: #b89068;

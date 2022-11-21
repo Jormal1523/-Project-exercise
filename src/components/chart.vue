@@ -42,16 +42,16 @@
       </div>
     </div>
     <div class="sideBar" v-if="form !== ''">
-      <div class="btn" :class="{ active: isActive === pie }" @click="pie">
+      <div class="btn" :class="{ active: form === 'pie' }" @click="pie">
         圓餅圖
       </div>
-      <div class="btn" :class="{ active: isActive === bar }" @click="bar">
+      <div class="btn" :class="{ active: form === 'bar' }" @click="bar">
         長條圖
       </div>
-      <div class="btn" :class="{ active: isActive === line }" @click="line">
+      <div class="btn" :class="{ active: form === 'line' }" @click="line">
         折線圖
       </div>
-      <div class="btn" :class="{ active: isActive === radar }" @click="radar">
+      <div class="btn" :class="{ active: form === 'radar' }" @click="radar">
         雷達圖
       </div>
     </div>
@@ -84,36 +84,33 @@ export default {
     });
 
     const form = ref("");
-    const isActive = ref(pie);
 
     if (store.state.chartStatus == "pie") {
       form.value = "pie";
-      isActive.value = pie;
     }
 
-    function pie() {
+    const pie = () => {
       form.value = "pie";
-      isActive.value = pie;
-    }
-    function bar() {
+    };
+    const bar = () => {
       form.value = "bar";
-      isActive.value = bar;
-    }
-    function line() {
+    };
+    const line = () => {
       form.value = "line";
-      isActive.value = line;
-    }
-    function radar() {
+    };
+    const radar = () => {
       form.value = "radar";
-      isActive.value = radar;
-    }
+    };
 
     // 判斷是用年份還是洲別
 
     const chartLabels = ref("");
     if (props.chartData.areas && props.chartData.years == "") {
       chartLabels.value = data.years;
-    } else if (props.chartData.years && props.chartData.areas == "") {
+    } else if (
+      (props.chartData.years || props.chartData.years2) &&
+      props.chartData.areas == ""
+    ) {
       chartLabels.value = data.continent;
     } else {
       chartLabels.value = [props.chartData.years];
@@ -189,7 +186,7 @@ export default {
               "#41B883",
               "#E46651",
               "#00D8FF",
-              "#DD1B16",
+              "#2913b9",
               "#333333",
             ],
             data: data.chartData,
@@ -311,7 +308,6 @@ export default {
       bar,
       radar,
       form,
-      isActive,
     };
   },
 };
